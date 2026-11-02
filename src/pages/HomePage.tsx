@@ -200,7 +200,7 @@ export default function HomePage() {
               <span className="project-category">{project.category}</span>
               <h3>{project.name}</h3>
               <p>{project.description}</p>
-              <div className="project-learning"><strong>What this project explores</strong><span>{project.name === 'PM-SETU' ? 'Institutional workflows, backend architecture, relational data modelling and API integration.' : project.name === 'ArcEngine' ? 'Rendering architecture, engine subsystems, physics integration, scripting and editor foundations.' : 'Local speech interfaces, modular C++ components, intent processing and privacy-conscious design.'}</span></div>
+              <div className="project-learning"><strong>What this project explores</strong><span>{project.name === 'PM-SETU' ? 'Institutional workflows, backend architecture, relational data modelling and API integration.' : project.name === 'ArcEngine' ? 'Rendering architecture, engine subsystems, physics integration, scripting and editor foundations.' : project.name === 'MiraV2' ? 'Local speech interfaces, modular C++ components, intent processing and privacy-conscious design.' : project.name === 'ArcTester' ? 'Offline-first exam delivery, question management, assessment logic and performance analytics.' : project.name === 'Freight Broker CRM & Carrier Vetting' ? 'Carrier onboarding, vetting workflows, operational data and cross-platform product development.' : 'Personnel data management, multi-stage allocation workflows, training, reporting and auditability.'}</span></div>
               <div className="tag-list">{project.stack.map(item => <span key={item}>{item}</span>)}</div>
               <div className="project-links">{project.links.map(link => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} <ArrowUpRight size={14}/></a>)}</div>
             </article>
@@ -228,7 +228,7 @@ export default function HomePage() {
 
       <section className="approach-section section-shell">
         <div className="section-heading compact-heading">
-          <span className="section-index">05 / HOW I WORK</span>
+          <span className="section-index">06 / HOW I WORK</span>
           <h2>Curiosity with an <span>engineering mindset.</span></h2>
         </div>
         <div className="approach-grid">
