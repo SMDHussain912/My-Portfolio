@@ -6,31 +6,89 @@ import './styles/global.css'
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [accent, setAccent] = useState('cyan')
+
   useEffect(() => {
-    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === 'Escape') setMenuOpen(false) }
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
     window.addEventListener('keydown', closeOnEscape)
     return () => window.removeEventListener('keydown', closeOnEscape)
   }, [])
-  const links = [{label:'Home',href:'/#home'},{label:'About',href:'/#about'},{label:'Journey',href:'/#journey'},{label:'Experience',href:'/#experience'},{label:'Projects',href:'/#projects'},{label:'More work',href:'/#more-projects'},{label:'GitHub',href:'/#github-activity'},{label:'Tech map',href:'/#tech-lab'},{label:'Skills',href:'/#skills'},{label:'Learning',href:'/#learning'},{label:'Terminal',href:'/#terminal'}]
+
+  const links = [
+    { label: 'Home', href: '/#home' },
+    { label: 'About', href: '/#about' },
+    { label: 'Experience', href: '/#experience' },
+    { label: 'Projects', href: '/#projects' },
+    { label: 'Explore', href: '/#tech-lab' },
+    { label: 'Contact', href: '/#contact' },
+  ]
+
   return (
     <div className="site-shell" data-accent={accent}>
       <header className="site-header">
-        <Link className="brand" to="/" aria-label="Shaik Mahammad Hussain home"><span className="brand-mark">SH</span><span>SHAIK MAHAMMAD HUSSAIN<small>ENGINEERING · SOFTWARE · IDEAS</small></span></Link>
-        <button className="mobile-menu" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={()=>setMenuOpen(!menuOpen)}>{menuOpen ? <X size={21}/> : <Menu size={21}/>}</button>
-        <nav id="primary-navigation" className={menuOpen?'nav-links nav-open':'nav-links'} aria-label="Main navigation">
-          {links.map(link=><a key={link.label} href={link.href} onClick={()=>setMenuOpen(false)}>{link.label}</a>)}
+        <Link className="brand" to="/" aria-label="Shaik Mahammad Hussain home">
+          <span className="brand-mark">SH</span>
+          <span>
+            SHAIK MAHAMMAD HUSSAIN
+            <small>ENGINEERING · SOFTWARE · IDEAS</small>
+          </span>
+        </Link>
+
+        <button
+          className="mobile-menu"
+          type="button"
+          aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? <X size={21} /> : <Menu size={21} />}
+        </button>
+
+        <nav
+          id="primary-navigation"
+          className={menuOpen ? 'nav-links nav-open' : 'nav-links'}
+          aria-label="Main navigation"
+        >
+          {links.map((link) => (
+            <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)}>
+              {link.label}
+            </a>
+          ))}
+
           <div className="accent-switcher" role="group" aria-label="Choose portfolio accent color">
             <span className="accent-switcher-label">COLOR</span>
-            <button className="accent-swatch swatch-cyan" type="button" aria-label="Cyan accent" aria-pressed={accent==='cyan'} onClick={()=>setAccent('cyan')} />
-            <button className="accent-swatch swatch-violet" type="button" aria-label="Violet accent" aria-pressed={accent==='violet'} onClick={()=>setAccent('violet')} />
-            <button className="accent-swatch swatch-amber" type="button" aria-label="Amber accent" aria-pressed={accent==='amber'} onClick={()=>setAccent('amber')} />
-            <button className="accent-swatch swatch-mint" type="button" aria-label="Mint accent" aria-pressed={accent==='mint'} onClick={()=>setAccent('mint')} />
+            <button className="accent-swatch swatch-cyan" type="button" aria-label="Cyan accent" aria-pressed={accent === 'cyan'} onClick={() => setAccent('cyan')} />
+            <button className="accent-swatch swatch-violet" type="button" aria-label="Violet accent" aria-pressed={accent === 'violet'} onClick={() => setAccent('violet')} />
+            <button className="accent-swatch swatch-amber" type="button" aria-label="Amber accent" aria-pressed={accent === 'amber'} onClick={() => setAccent('amber')} />
+            <button className="accent-swatch swatch-mint" type="button" aria-label="Mint accent" aria-pressed={accent === 'mint'} onClick={() => setAccent('mint')} />
           </div>
-          <button className="palette-shortcut" type="button" onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", ctrlKey: true }))} aria-label="Open quick navigation"><span>CTRL</span> K</button><a className="nav-contact" href="mailto:shaikmahammadhussain9121@gmail.com">Let's talk <span>↗</span></a>
+
+          <button
+            className="palette-shortcut"
+            type="button"
+            onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
+            aria-label="Open quick navigation"
+          >
+            <span>CTRL</span> K
+          </button>
+          <a className="nav-contact" href="mailto:shaikmahammadhussain9121@gmail.com">
+            Let&apos;s talk <span>↗</span>
+          </a>
         </nav>
       </header>
+
       <Outlet />
-      <footer className="site-footer"><span>© 2026 Shaik Mahammad Hussain</span><span>Built with curiosity & code.</span><div><a href="https://github.com/SMDHussain912" target="_blank" rel="noreferrer" aria-label="GitHub"><Code2 size={16}/></a><a href="https://www.linkedin.com/in/shaik-mahammad-hussain-996088430/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><BriefcaseBusiness size={16}/></a></div></footer>
+
+      <footer className="site-footer">
+        <span>© 2026 Shaik Mahammad Hussain</span>
+        <span>Built with curiosity &amp; code.</span>
+        <div>
+          <a href="https://github.com/SMDHussain912" target="_blank" rel="noreferrer" aria-label="GitHub"><Code2 size={16} /></a>
+          <a href="https://www.linkedin.com/in/shaik-mahammad-hussain-996088430/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><BriefcaseBusiness size={16} /></a>
+        </div>
+      </footer>
     </div>
   )
 }
