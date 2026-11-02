@@ -1,4 +1,4 @@
-import { Github, Linkedin, Menu } from 'lucide-react'
+import { Code2, BriefcaseBusiness, Menu } from 'lucide-react'
 import { Link, Outlet } from 'react-router-dom'
 import { useState } from 'react'
 import './styles/global.css'
@@ -17,7 +17,7 @@ export default function App() {
         </nav>
       </header>
       <Outlet />
-      <footer className="site-footer"><span>© {new Date().getFullYear()} Shaik Mahammad Hussain</span><span>Built with curiosity & code.</span><div><a href="https://github.com/SMDHussain912" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={16}/></a><a href="https://www.linkedin.com/in/shaik-mahammad-hussain-996088430/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={16}/></a></div></footer>
+      <footer className="site-footer"><span>© {new Date().getFullYear()} Shaik Mahammad Hussain</span><span>Built with curiosity & code.</span><div><a href="https://github.com/SMDHussain912" target="_blank" rel="noreferrer" aria-label="GitHub"><Code2 size={16}/></a><a href="https://www.linkedin.com/in/shaik-mahammad-hussain-996088430/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><BriefcaseBusiness size={16}/></a></div></footer>
     </div>
   )
 }
