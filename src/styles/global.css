@@ -1,0 +1,64 @@
+/*!
+  Tailwind CSS v4.0.0
+  Copyright © 2024 Tailwind Labs, Inc.
+  This file is generated automatically by Tailwind CSS - do not edit by hand
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global custom styles */
+:root {
+  --bg: #0a0a0f;
+  --bg-subtle: #12121a;
+  --fg: #e8e8f0;
+  --muted: #6b6b80;
+  --accent: #bb86fc;
+  --accent-soft: rgba(187, 134, 252, 0.4);
+  --card: #16161f;
+  --border: #2a2a3a;
+  --error: #ff5252;
+  --success: #4ade80;
+}
+
+.dark {
+  --bg: #0a0a0f;
+  --bg-subtle: #12121a;
+  --fg: #e8e8f0;
+  --muted: #6b6b80;
+  --accent: #bb86fc;
+  --accent-soft: rgba(187, 134, 252, 0.4);
+  --card: #16161f;
+  --border: #2a2a3a;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
