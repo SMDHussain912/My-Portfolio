@@ -100,6 +100,7 @@ export default function HomePage() {
   const pageRef = useRef<HTMLDivElement>(null)
   const [projectFilter, setProjectFilter] = useState('All')
   const [projectSearch, setProjectSearch] = useState('')
+  const [selectedFocus, setSelectedFocus] = useState(0)
   const projectFilters = ['All', 'Personal', 'Professional', 'Institutional']
   const visibleProjects = useMemo(() => projects.filter((project) => {
     const kind = project.name === 'Freight Broker CRM & Carrier Vetting'
@@ -187,8 +188,21 @@ export default function HomePage() {
           <div className="hero-monogram"><span>SH</span><i /></div>
           <div className="aside-card">
             <div className="aside-card-heading"><Sparkles size={15} /> AREAS I EXPLORE</div>
-            <ul>{focusAreas.map((area, index) => <li key={area}><span>0{index + 1}</span>{area}</li>)}</ul>
-            <div className="aside-card-foot">Curiosity, built into everything.</div>
+            <ul className="focus-list">{focusAreas.map((area, index) => (
+              <li key={area}>
+                <button type="button" className={selectedFocus === index ? 'focus-option is-selected' : 'focus-option'} onClick={() => setSelectedFocus(index)} aria-pressed={selectedFocus === index}>
+                  <span>0{index + 1}</span>{area}<ArrowUpRight size={13}/>
+                </button>
+              </li>
+            ))}</ul>
+            <div className="aside-card-foot focus-detail" aria-live="polite">
+              {[
+                'Building complete products, from interfaces to APIs and data.',
+                'Exploring models, data and practical intelligent applications.',
+                'Creating interactive worlds, tools and gameplay systems.',
+                'Understanding performance, architecture and how computers work.'
+              ][selectedFocus]}
+            </div>
           </div>
           <div className="coordinate coordinate-top">16° 59' N<br />82° 15' E</div>
           <div className="coordinate coordinate-bottom">INDEPENDENTLY<br />BUILDING & LEARNING</div>
