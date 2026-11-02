@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail, Sparkles } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles } from 'lucide-react'
 
 const focusAreas = ['Full-Stack Development', 'AI & Machine Learning', 'Game Development', 'Systems Programming']
 
@@ -20,8 +20,8 @@ export default function HomePage() {
             <a className="button button-secondary" href="mailto:shaikmahammadhussain9121@gmail.com">Get in touch <Mail size={16} /></a>
           </div>
           <div className="hero-socials" aria-label="Social links">
-            <a href="https://github.com/SMDHussain912" target="_blank" rel="noreferrer"><Github size={17} /> GitHub <ArrowUpRight size={13} /></a>
-            <a href="https://www.linkedin.com/in/shaik-mahammad-hussain-996088430/" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn <ArrowUpRight size={13} /></a>
+            <a href="https://github.com/SMDHussain912" target="_blank" rel="noreferrer"><Code2 size={17} /> GitHub <ArrowUpRight size={13} /></a>
+            <a href="https://www.linkedin.com/in/shaik-mahammad-hussain-996088430/" target="_blank" rel="noreferrer"><BriefcaseBusiness size={17} /> LinkedIn <ArrowUpRight size={13} /></a>
           </div>
         </div>
         <aside className="hero-aside" aria-label="Areas of engineering interest">
