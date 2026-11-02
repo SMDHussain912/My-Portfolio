@@ -875,3 +875,234 @@ section[id] { scroll-margin-top: 28px; }
 }
 
 @media(min-width:1401px){.site-header .brand{flex-basis:210px;min-width:210px;font-size:10px}.site-header .nav-links{gap:clamp(8px,.7vw,12px);font-size:11px}.site-header .palette-shortcut{padding:6px 8px}.site-header .nav-contact{padding:10px 11px}}
+
+
+/* Phase 1: responsive structure and accessible interaction refinements */
+html {
+  scroll-padding-top: 92px;
+  overflow-x: clip;
+}
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+}
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+.site-shell,
+.home-page {
+  width: 100%;
+  min-width: 0;
+}
+.site-header {
+  width: 100%;
+  min-width: 0;
+}
+.site-header .brand {
+  min-width: 0;
+}
+.site-header .nav-links {
+  min-width: 0;
+}
+.section-shell {
+  width: 100%;
+}
+.hero,
+.about-section,
+.journey-section,
+.experience-section,
+.projects-section,
+.other-projects-section,
+.skills-section,
+.learning-section,
+.approach-section,
+.github-section,
+.terminal-section,
+.tech-lab-section,
+.contact-section {
+  scroll-margin-top: 92px;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--accent, var(--cyan));
+  outline-offset: 4px;
+}
+@media (max-width: 850px) {
+  .site-header {
+    padding-inline: 24px;
+  }
+  .section-shell {
+    padding-inline: 24px;
+  }
+  .hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .hero-aside {
+    width: 100%;
+    min-width: 0;
+  }
+  .aside-card {
+    max-width: min(270px, 82vw);
+  }
+  .site-footer {
+    gap: 14px 20px;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 600px) {
+  html {
+    scroll-padding-top: 78px;
+  }
+  .site-header {
+    padding-inline: 16px;
+  }
+  .site-header .brand {
+    max-width: calc(100% - 58px);
+    overflow: hidden;
+  }
+  .site-header .brand > span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .site-header .nav-links.nav-open {
+    max-height: calc(100dvh - 78px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .section-shell,
+  .learning-section {
+    padding-inline: 20px;
+  }
+  .hero {
+    padding-top: 58px;
+    padding-bottom: 86px;
+  }
+  .hero h1 {
+    font-size: clamp(39px, 11.5vw, 58px);
+    line-height: 1.08;
+    overflow-wrap: normal;
+  }
+  .hero-role {
+    flex-wrap: wrap;
+    row-gap: 8px;
+    font-size: clamp(15px, 4vw, 19px);
+  }
+  .hero-description {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .hero-aside {
+    height: 350px;
+    margin-inline: 0;
+  }
+  .hero-monogram {
+    width: 170px;
+    height: 170px;
+  }
+  .hero-monogram span {
+    font-size: 48px;
+  }
+  .orbit {
+    width: min(280px, 82vw);
+    height: min(280px, 82vw);
+  }
+  .orbit-two {
+    width: min(330px, 96vw);
+    height: min(330px, 96vw);
+  }
+  .aside-card {
+    right: 0;
+    bottom: 0;
+    width: min(245px, 78vw);
+    padding: 15px;
+  }
+  .coordinate-top {
+    top: 0;
+    right: 0;
+  }
+  .coordinate-bottom {
+    left: 0;
+    bottom: 8px;
+  }
+  .hero-socials {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .experience-details,
+  .project-grid,
+  .other-projects-grid,
+  .skills-grid,
+  .learning-grid,
+  .approach-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .experience-card,
+  .project-card,
+  .other-project-card,
+  .skill-card,
+  .learning-card {
+    min-width: 0;
+  }
+  .project-card h3,
+  .other-project-card h3 {
+    overflow-wrap: anywhere;
+  }
+  .journey-item {
+    grid-template-columns: 78px minmax(0, 1fr);
+  }
+  .journey-content {
+    min-width: 0;
+  }
+  .tech-lab {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tech-results {
+    min-width: 0;
+  }
+  .terminal-form {
+    min-width: 0;
+  }
+  .terminal-form input {
+    width: 100%;
+  }
+  .site-footer {
+    padding-inline: 20px;
+  }
+}
+@media (max-width: 380px) {
+  .section-shell,
+  .learning-section {
+    padding-inline: 16px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 10.8vw, 43px);
+  }
+  .hero-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+  .journey-item {
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .journey-marker {
+    gap: 6px;
+    font-size: 9px;
+  }
+  .journey-marker span {
+    min-width: 26px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
