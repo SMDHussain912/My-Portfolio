@@ -5,7 +5,7 @@ import './styles/global.css'
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const links = [{label:'Home',href:'/#home'},{label:'About',href:'/#about'},{label:'Journey',href:'/#journey'},{label:'Experience',href:'/#experience'},{label:'Projects',href:'/#projects'},{label:'Skills',href:'/#skills'},{label:'Learning',href:'/#learning'}]
+  const links = [{label:'Home',href:'/#home'},{label:'About',href:'/#about'},{label:'Journey',href:'/#journey'},{label:'Experience',href:'/#experience'},{label:'Projects',href:'/#projects'},{label:'More work',href:'/#more-projects'},{label:'Skills',href:'/#skills'},{label:'Learning',href:'/#learning'}]
   return (
     <div className="site-shell">
       <header className="site-header">
