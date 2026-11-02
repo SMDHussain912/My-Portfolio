@@ -1,13 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom'
+import App from './App'
+import HomePage from './pages/HomePage'
+import NotFoundPage from './pages/NotFoundPage'
 
-// Base routes - will be expanded with portfolio sections later
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: null, // Placeholder - will be replaced by portfolio sections
-  },
-  {
-    path: '*',
-    element: null, // 404 placeholder
-  },
-])
+export const router = createBrowserRouter([{
+  path: '/',
+  element: <App />,
+  children: [
+    { index: true, element: <HomePage /> },
+    { path: '*', element: <NotFoundPage /> },
+  ],
+}])
