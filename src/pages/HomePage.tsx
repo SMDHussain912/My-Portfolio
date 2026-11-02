@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles, GraduationCap, Terminal, Cpu, Gamepad2, Globe2 } from 'lucide-react'
@@ -98,6 +98,29 @@ const learningTracks = [
 
 export default function HomePage() {
   const pageRef = useRef<HTMLDivElement>(null)
+  const [projectFilter, setProjectFilter] = useState('All')
+  const [projectSearch, setProjectSearch] = useState('')
+  const projectFilters = ['All', 'Personal', 'Professional', 'Institutional']
+  const visibleProjects = useMemo(() => projects.filter((project) => {
+    const kind = project.name === 'Freight Broker CRM & Carrier Vetting'
+      ? 'Professional'
+      : ['PM-SETU', 'Polling Officer Allocation System'].includes(project.name)
+        ? 'Institutional'
+        : 'Personal'
+    const matchesFilter = projectFilter === 'All' || kind === projectFilter
+    const query = projectSearch.trim().toLowerCase()
+    const matchesSearch = !query || [project.name, project.category, project.description, ...project.stack]
+      .join(' ').toLowerCase().includes(query)
+    return matchesFilter && matchesSearch
+  }), [projectFilter, projectSearch])
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    gsap.fromTo('.project-card', { autoAlpha: 0, y: 14 }, {
+      autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.045, ease: 'power2.out',
+      overwrite: true,
+    })
+  }, [projectFilter, projectSearch])
 
   useEffect(() => {
     const page = pageRef.current
@@ -237,8 +260,37 @@ export default function HomePage() {
           <h2>Ideas turned into <span>experiments.</span></h2>
           <p>These projects represent different sides of my engineering interests—from delivering institutional software to exploring how engines and local AI systems are built. I keep project status transparent: ongoing work is not presented as finished software.</p>
         </div>
+        <div className="project-controls" aria-label="Filter projects">
+          <div className="project-filter-list" role="group" aria-label="Project type">
+            {projectFilters.map((filter) => (
+              <button
+                className={projectFilter === filter ? 'filter-chip is-active' : 'filter-chip'}
+                type="button"
+                key={filter}
+                aria-pressed={projectFilter === filter}
+                onClick={() => setProjectFilter(filter)}
+              >
+                {filter}
+                {filter === 'All' && <span>{projects.length}</span>}
+              </button>
+            ))}
+          </div>
+          <label className="project-search">
+            <Code2 size={16} aria-hidden="true" />
+            <input
+              type="search"
+              value={projectSearch}
+              onChange={(event) => setProjectSearch(event.target.value)}
+              placeholder="Search projects or technologies"
+              aria-label="Search featured projects or technologies"
+            />
+          </label>
+        </div>
+        <p className="project-results" aria-live="polite">
+          Showing {visibleProjects.length} of {projects.length} featured projects
+        </p>
         <div className="project-grid">
-          {projects.map(project => (
+          {visibleProjects.map(project => (
             <article className="project-card" key={project.number}>
               <div className="project-card-top"><span>{project.number} / PROJECT</span><span className="project-status">{project.status}</span></div>
               <div className="project-symbol"><Terminal size={23}/></div>
@@ -250,6 +302,13 @@ export default function HomePage() {
               <div className="project-links">{project.links.map(link => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} <ArrowUpRight size={14}/></a>)}</div>
             </article>
           ))}
+          {visibleProjects.length === 0 && (
+            <div className="project-empty">
+              <strong>No matching projects</strong>
+              <span>Try another keyword or choose a different project type.</span>
+              <button type="button" onClick={() => { setProjectSearch(''); setProjectFilter('All') }}>Clear filters</button>
+            </div>
+          )}
         </div>
       </section>
 
