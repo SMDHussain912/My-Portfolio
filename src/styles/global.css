@@ -25,3 +25,79 @@
 .skills-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.skill-card{min-height:170px;padding:24px 21px}.skill-card h3{font-size:14px}.skill-card p{font-size:11px;line-height:1.9}.learning-section{padding:75px 42px 110px;border-top:1px solid var(--line)}.learning-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.learning-card{display:grid;grid-template-columns:42px 1fr;gap:15px;padding:23px 22px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(15,27,43,.76),rgba(9,15,25,.78));min-height:145px}.learning-card>span{font:11px 'DM Mono';color:var(--cyan);padding-top:2px}.learning-card h3{font:600 15px 'Space Grotesk';margin:0 0 9px;color:#e5edf7}.learning-card p{font-size:11px;line-height:1.8;color:var(--muted);margin:0}.about-copy>p{max-width:650px}.skills-section .section-heading>p,.learning-section .section-heading>p{max-width:700px}
 @media(max-width:850px){.skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.learning-section{padding:65px 24px 85px}}
 @media(max-width:600px){.skills-grid,.learning-grid{grid-template-columns:1fr}.skill-card{min-height:0}.learning-section{padding:60px 24px 75px}.learning-card{min-height:0;padding:20px}}
+
+
+/* Readability pass: increase body copy, navigation, cards and section typography */
+html { font-size: 16px; }
+body { font-size: 16px; }
+.nav-links { font-size: 14px; gap: 28px; }
+.brand { font-size: 12px; }
+.brand small { font-size: 10px; }
+.eyebrow,.section-index { font-size: 12px; }
+.hero-kicker { font-size: 18px; }
+.hero-role { font-size: 20px; }
+.hero-description { font-size: 18px; line-height: 1.85; max-width: 650px; }
+.hero-socials { font-size: 14px; }
+.section-heading h2 { font-size: clamp(36px, 4.5vw, 58px); line-height: 1.12; }
+.section-heading > p { font-size: 16px; line-height: 1.85; }
+.intro-strip p { font-size: 23px; line-height: 1.55; }
+.intro-note { font-size: 12px; }
+.about-copy > p { font-size: 16px; line-height: 1.9; }
+.education-line strong { font-size: 14px; }
+.education-line small { font-size: 12px; }
+.journey-marker { font-size: 13px; }
+.journey-step { font-size: 10px; }
+.journey-content h3 { font-size: 21px; }
+.journey-content p { font-size: 15px; line-height: 1.85; }
+.experience-type,.experience-location { font-size: 11px; }
+.experience-main h3 { font-size: 26px; }
+.experience-main h4 { font-size: 15px; }
+.experience-main p { font-size: 15px; line-height: 1.9; }
+.experience-details strong { font-size: 13px; }
+.experience-details span { font-size: 13px; line-height: 1.75; }
+.tag-list span { font-size: 11px; }
+.project-card { padding: 27px 25px 23px; }
+.project-card-top { font-size: 10px; }
+.project-category { font-size: 11px; }
+.project-card h3 { font-size: 27px; line-height: 1.2; }
+.project-card > p { font-size: 15px; line-height: 1.85; }
+.project-learning strong { font-size: 10px; }
+.project-learning span { font-size: 13px; line-height: 1.8; }
+.project-links a { font-size: 13px; }
+.skill-card { padding: 27px 23px; min-height: 190px; }
+.skill-card h3 { font-size: 18px; line-height: 1.35; }
+.skill-card p { font-size: 14px; line-height: 1.9; }
+.learning-card h3 { font-size: 18px; line-height: 1.35; }
+.learning-card p { font-size: 14px; line-height: 1.85; }
+.approach-grid h3 { font-size: 19px; }
+.approach-grid p { font-size: 14px; line-height: 1.85; }
+.contact-section > p { font-size: 16px; line-height: 1.85; }
+.site-footer { font-size: 13px; }
+
+.other-projects-section { padding-top: 72px; padding-bottom: 105px; border-top: 1px solid var(--line); }
+.other-projects-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.other-project-card { display: flex; flex-direction: column; min-height: 220px; padding: 23px 21px; border: 1px solid var(--line); background: rgba(13,21,34,.58); }
+.other-project-card > span { font: 10px 'DM Mono'; letter-spacing: .06em; color: var(--cyan); text-transform: uppercase; line-height: 1.6; }
+.other-project-card h3 { font: 600 20px 'Space Grotesk'; margin: 14px 0 9px; color: var(--text); }
+.other-project-card p { font-size: 14px; line-height: 1.8; color: var(--muted); flex: 1; margin: 0 0 18px; }
+.other-project-card a { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #c6d7e9; }
+.other-project-card a:hover { color: var(--cyan); }
+
+@media(max-width: 1000px) {
+  .other-projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media(max-width: 600px) {
+  .nav-links { font-size: 14px; }
+  .hero-description { font-size: 16px; }
+  .section-heading h2 { font-size: clamp(32px, 9vw, 42px); }
+  .intro-strip p { font-size: 19px; }
+  .about-copy > p { font-size: 15px; }
+  .journey-content h3 { font-size: 19px; }
+  .journey-content p { font-size: 14px; }
+  .project-card h3 { font-size: 25px; }
+  .project-card > p { font-size: 14px; }
+  .skill-card h3 { font-size: 18px; }
+  .skill-card p,.learning-card p { font-size: 14px; }
+  .other-projects-grid { grid-template-columns: 1fr; }
+  .other-project-card { min-height: 0; }
+}
