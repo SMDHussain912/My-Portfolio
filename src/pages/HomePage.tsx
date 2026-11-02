@@ -2,6 +2,13 @@ import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles,
 
 const focusAreas = ['Full-Stack Development', 'AI & Machine Learning', 'Game Development', 'Systems Programming']
 
+const journey = [
+  { year: '2024', title: 'Started Computer Engineering', detail: 'Began my Diploma in Computer Engineering at Andhra Polytechnic, Kakinada, and started building a stronger foundation in programming and computing.' },
+  { year: '2025', title: 'Learning by building', detail: 'Expanded into web development, databases, programming languages and independent software projects.' },
+  { year: '2026', title: 'Industry experience at NIC', detail: 'Joined the National Informatics Centre at the Collector Office, Kakinada for industrial training and contributed to institutional web development and PM-SETU.' },
+  { year: 'NOW', title: 'Exploring deeper engineering', detail: 'Continuing to develop projects across full-stack software, local AI systems and game-engine technology.' },
+]
+
 const projects = [
   {
     number: '01',
@@ -97,6 +104,22 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="journey-section section-shell" id="journey">
+        <div className="section-heading compact-heading">
+          <span className="section-index">02 / THE JOURNEY</span>
+          <h2>Learning, building, <span>evolving.</span></h2>
+          <p>Not a straight line—just a steady progression from learning fundamentals to applying them in real projects.</p>
+        </div>
+        <div className="journey-list">
+          {journey.map((item, index) => (
+            <article className="journey-item" key={item.year}>
+              <div className="journey-marker"><span>{item.year}</span><i /></div>
+              <div className="journey-content"><span className="journey-step">MILESTONE 0{index + 1}</span><h3>{item.title}</h3><p>{item.detail}</p></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="experience-section section-shell" id="experience">
         <div className="section-heading compact-heading">
           <span className="section-index">02 / EXPERIENCE</span>
@@ -108,8 +131,13 @@ export default function HomePage() {
             <div className="experience-topline"><span className="experience-type">INDUSTRIAL TRAINING</span><span className="experience-location">KAKINADA, ANDHRA PRADESH</span></div>
             <h3>Web Development Intern</h3>
             <h4>National Informatics Centre (NIC) · Collector Office</h4>
-            <p>Worked on institutional web development during a six-month industrial training placement, contributing to React interfaces and backend development for the PM-SETU project. Work included reusable UI components, REST APIs, database integration and application workflows.</p>
-            <div className="tag-list"><span>React</span><span>Node.js</span><span>Express</span><span>REST APIs</span><span>Databases</span></div>
+            <p>Contributed to PM-SETU, an institutional web platform, during my industrial training at the Collector Office. My work focused on backend development and connecting application workflows with persistent data, alongside exposure to frontend implementation.</p>
+            <div className="experience-details">
+              <div><strong>Backend contribution</strong><span>API development, request validation, application logic and database integration.</span></div>
+              <div><strong>Frontend collaboration</strong><span>React interfaces and reusable components for institutional workflows.</span></div>
+              <div><strong>Engineering practice</strong><span>Working with a real project structure, debugging, integration and iterative development.</span></div>
+            </div>
+            <div className="tag-list"><span>React</span><span>TypeScript</span><span>Node.js</span><span>Express</span><span>Prisma</span><span>PostgreSQL</span><span>REST APIs</span></div>
           </div>
         </article>
       </section>
@@ -118,7 +146,7 @@ export default function HomePage() {
         <div className="section-heading">
           <span className="section-index">03 / SELECTED WORK</span>
           <h2>Ideas turned into <span>experiments.</span></h2>
-          <p>A few projects that reflect what I'm learning, building and exploring. Their status is shown honestly—prototype means prototype.</p>
+          <p>These projects represent different sides of my engineering interests—from delivering institutional software to exploring how engines and local AI systems are built. I keep project status transparent: ongoing work is not presented as finished software.</p>
         </div>
         <div className="project-grid">
           {projects.map(project => (
@@ -128,6 +156,7 @@ export default function HomePage() {
               <span className="project-category">{project.category}</span>
               <h3>{project.name}</h3>
               <p>{project.description}</p>
+              <div className="project-learning"><strong>What this project explores</strong><span>{project.name === 'PM-SETU' ? 'Institutional workflows, backend architecture, relational data modelling and API integration.' : project.name === 'ArcEngine' ? 'Rendering architecture, engine subsystems, physics integration, scripting and editor foundations.' : 'Local speech interfaces, modular C++ components, intent processing and privacy-conscious design.'}</span></div>
               <div className="tag-list">{project.stack.map(item => <span key={item}>{item}</span>)}</div>
               <div className="project-links">{project.links.map(link => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} <ArrowUpRight size={14}/></a>)}</div>
             </article>
@@ -135,9 +164,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="approach-section section-shell">
+        <div className="section-heading compact-heading">
+          <span className="section-index">05 / HOW I WORK</span>
+          <h2>Curiosity with an <span>engineering mindset.</span></h2>
+        </div>
+        <div className="approach-grid">
+          <article><span>01</span><h3>Understand the fundamentals</h3><p>I like knowing why a system works—not just which commands make it run.</p></article>
+          <article><span>02</span><h3>Build to learn</h3><p>I turn concepts into small experiments and gradually grow them into practical projects.</p></article>
+          <article><span>03</span><h3>Improve through iteration</h3><p>I value debugging, documentation, feedback and honest progress over pretending everything is finished.</p></article>
+        </div>
+      </section>
+
       <section className="skills-section section-shell" id="skills">
         <div className="section-heading compact-heading">
-          <span className="section-index">04 / TOOLKIT</span>
+          <span className="section-index">06 / TOOLKIT</span>
           <h2>Tools I work <span>with.</span></h2>
         </div>
         <div className="skills-grid">
@@ -149,7 +190,7 @@ export default function HomePage() {
       </section>
 
       <section className="contact-section section-shell" id="contact">
-        <span className="section-index">05 / GET IN TOUCH</span>
+        <span className="section-index">07 / GET IN TOUCH</span>
         <h2>Have an idea?<br/><span>Let's build something.</span></h2>
         <p>I'm interested in meaningful projects, learning opportunities and conversations about engineering.</p>
         <a className="button button-primary" href="mailto:shaikmahammadhussain9121@gmail.com">Say hello <Mail size={16}/></a>
