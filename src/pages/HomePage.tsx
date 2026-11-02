@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles, GraduationCap, Terminal, Cpu, Gamepad2, Globe2 } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles, GraduationCap, Terminal, Cpu, Gamepad2, Globe2, Github, Search, X, Activity, Command, ChevronRight } from 'lucide-react'
 
  gsap.registerPlugin(ScrollTrigger)
 
@@ -101,6 +101,14 @@ export default function HomePage() {
   const [projectFilter, setProjectFilter] = useState('All')
   const [projectSearch, setProjectSearch] = useState('')
   const [selectedFocus, setSelectedFocus] = useState(0)
+  const [roleIndex, setRoleIndex] = useState(0)
+  const [githubProfile, setGithubProfile] = useState<{ public_repos: number; followers: number } | null>(null)
+  const [githubRepos, setGithubRepos] = useState<Array<{ name: string; html_url: string; description: string | null; language: string | null; updated_at: string }>>([])
+  const [githubState, setGithubState] = useState<'loading' | 'ready' | 'error'>('loading')
+  const [terminalInput, setTerminalInput] = useState('')
+  const [terminalOutput, setTerminalOutput] = useState<string[]>(['Welcome to arc://portfolio', 'Type help to see available commands.'])
+  const [paletteOpen, setPaletteOpen] = useState(false)
+  const [paletteQuery, setPaletteQuery] = useState('')
   const projectFilters = ['All', 'Personal', 'Professional', 'Institutional']
   const visibleProjects = useMemo(() => projects.filter((project) => {
     const kind = project.name === 'Freight Broker CRM & Carrier Vetting'
@@ -114,6 +122,82 @@ export default function HomePage() {
       .join(' ').toLowerCase().includes(query)
     return matchesFilter && matchesSearch
   }), [projectFilter, projectSearch])
+
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const timer = window.setInterval(() => setRoleIndex((current) => (current + 1) % focusAreas.length), 3200)
+    return () => window.clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const controller = new AbortController()
+    const loadGithub = async () => {
+      try {
+        const [profileResponse, reposResponse] = await Promise.all([
+          fetch('https://api.github.com/users/SMDHussain912', { signal: controller.signal }),
+          fetch('https://api.github.com/users/SMDHussain912/repos?sort=updated&per_page=5', { signal: controller.signal }),
+        ])
+        if (!profileResponse.ok || !reposResponse.ok) throw new Error('GitHub API unavailable')
+        const profile = await profileResponse.json()
+        const repos = await reposResponse.json()
+        setGithubProfile({ public_repos: profile.public_repos, followers: profile.followers })
+        setGithubRepos(repos.map((repo: { name: string; html_url: string; description: string | null; language: string | null; updated_at: string }) => ({
+          name: repo.name, html_url: repo.html_url, description: repo.description, language: repo.language, updated_at: repo.updated_at,
+        })))
+        setGithubState('ready')
+      } catch {
+        if (!controller.signal.aborted) setGithubState('error')
+      }
+    }
+    loadGithub()
+    return () => controller.abort()
+  }, [])
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault()
+        setPaletteOpen((open) => !open)
+        setPaletteQuery('')
+      }
+      if (event.key === 'Escape') setPaletteOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
+  const runTerminalCommand = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const command = terminalInput.trim().toLowerCase()
+    if (!command) return
+    const responses: Record<string, string> = {
+      help: 'Available: help · about · projects · skills · github · contact · clear',
+      about: 'Arc is a multidisciplinary developer exploring web, AI, games and systems engineering.',
+      projects: 'Featured work: PM-SETU, ArcEngine, MiraV2, ArcTester, Freight Broker CRM and Polling Officer Allocation.',
+      skills: 'C/C++ · Python · TypeScript · React · Node.js · PostgreSQL · PyTorch · Unity · Linux',
+      github: 'Opening GitHub profile…',
+      contact: 'Email: shaikmahammadhussain9121@gmail.com',
+    }
+    if (command === 'clear') setTerminalOutput([])
+    else {
+      setTerminalOutput((lines) => [...lines, 'arc@portfolio:~$ ' + command, responses[command] ?? ('Command not found: ' + command + '. Type help.')])
+      if (command === 'github') window.open('https://github.com/SMDHussain912', '_blank', 'noopener,noreferrer')
+    }
+    setTerminalInput('')
+  }
+
+  const paletteItems = [
+    { label: 'Home', detail: 'Back to the introduction', href: '#home' },
+    { label: 'About', detail: 'Background and education', href: '#about' },
+    { label: 'Journey', detail: 'Milestones and progression', href: '#journey' },
+    { label: 'Experience', detail: 'Industrial training', href: '#experience' },
+    { label: 'Projects', detail: 'Selected engineering work', href: '#projects' },
+    { label: 'GitHub activity', detail: 'Live public profile data', href: '#github-activity' },
+    { label: 'Skills', detail: 'Technical toolkit', href: '#skills' },
+    { label: 'Terminal', detail: 'Explore with commands', href: '#terminal' },
+    { label: 'Contact', detail: 'Start a conversation', href: '#contact' },
+  ].filter((item) => (item.label + ' ' + item.detail).toLowerCase().includes(paletteQuery.toLowerCase()))
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -267,7 +351,7 @@ export default function HomePage() {
           <div className="eyebrow"><span className="status-dot" /> COMPUTER ENGINEERING STUDENT · DEVELOPER</div>
           <p className="hero-kicker">Hello, I'm</p>
           <h1 id="hero-title">Shaik Mahammad <span>Hussain.</span></h1>
-          <div className="hero-role"><span className="role-line" /> Multidisciplinary Developer</div>
+          <div className="hero-role"><span className="role-line" /> <span className="role-rotator" aria-live="polite">{focusAreas[roleIndex]}</span><span className="role-counter">0{roleIndex + 1} / 04</span></div>
           <p className="hero-description">
             I build software across web development, AI, game development, and systems programming.
             I enjoy exploring technology, solving engineering problems, and turning ideas into working projects.
@@ -443,6 +527,37 @@ export default function HomePage() {
         </div>
       </section>
 
+
+      <section className="github-section section-shell" id="github-activity">
+        <div className="section-heading compact-heading">
+          <span className="section-index">06 / OPEN SOURCE PRESENCE</span>
+          <h2>Code in <span>public.</span></h2>
+          <p>A live snapshot of my public GitHub profile and recently updated repositories. Data is fetched directly from GitHub, never invented.</p>
+        </div>
+        <div className="github-panel">
+          <div className="github-profile">
+            <div className="github-mark"><Github size={28}/></div>
+            <div><strong>SMDHussain912</strong><span>Public GitHub profile</span></div>
+            <a href="https://github.com/SMDHussain912" target="_blank" rel="noreferrer">View profile <ArrowUpRight size={14}/></a>
+          </div>
+          {githubState === 'loading' && <p className="github-state"><Activity size={16}/> Connecting to GitHub…</p>}
+          {githubState === 'error' && <p className="github-state">GitHub's public API is temporarily unavailable. Visit the profile for the latest activity.</p>}
+          {githubState === 'ready' && githubProfile && <>
+            <div className="github-stats">
+              <div><strong>{githubProfile.public_repos}</strong><span>Public repositories</span></div>
+              <div><strong>{githubProfile.followers}</strong><span>Followers</span></div>
+              <div><strong>{githubRepos.length}</strong><span>Recently updated</span></div>
+            </div>
+            <div className="github-repo-list">
+              {githubRepos.map((repo) => <a className="github-repo" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.name}>
+                <span><strong>{repo.name}</strong><small>{repo.description || 'Public repository'}</small></span>
+                <span className="github-repo-meta">{repo.language || 'Code'} · {new Date(repo.updated_at).toLocaleDateString()} <ArrowUpRight size={13}/></span>
+              </a>)}
+            </div>
+          </>}
+        </div>
+      </section>
+
       <section className="approach-section section-shell">
         <div className="section-heading compact-heading">
           <span className="section-index">06 / HOW I WORK</span>
@@ -480,12 +595,41 @@ export default function HomePage() {
         </div>
       </section>
 
+
+      <section className="terminal-section section-shell" id="terminal">
+        <div className="section-heading compact-heading">
+          <span className="section-index">09 / INTERACTIVE EXPERIMENT</span>
+          <h2>Curious? Open the <span>terminal.</span></h2>
+          <p>A tiny command-line-style tour. Try <code>help</code>, <code>projects</code>, or <code>skills</code>.</p>
+        </div>
+        <div className="portfolio-terminal">
+          <div className="terminal-topbar"><span><i/><i/><i/></span><strong>arc@portfolio — interactive shell</strong><span>LOCAL SESSION</span></div>
+          <div className="terminal-screen" aria-live="polite">
+            {terminalOutput.map((line, index) => <p className={line.startsWith('arc@') ? 'terminal-command' : 'terminal-response'} key={index + '-' + line}>{line}</p>)}
+          </div>
+          <form className="terminal-form" onSubmit={runTerminalCommand}>
+            <label htmlFor="terminal-input">arc@portfolio:~$</label>
+            <input id="terminal-input" value={terminalInput} onChange={(event) => setTerminalInput(event.target.value)} autoComplete="off" spellCheck={false} placeholder="type a command…" />
+            <button type="submit" aria-label="Run terminal command"><ChevronRight size={18}/></button>
+          </form>
+        </div>
+      </section>
+
       <section className="contact-section section-shell" id="contact">
         <span className="section-index">09 / GET IN TOUCH</span>
         <h2>Have an idea?<br/><span>Let's build something.</span></h2>
         <p>I'm interested in meaningful projects, learning opportunities and conversations about engineering.</p>
         <a className="button button-primary" href="mailto:shaikmahammadhussain9121@gmail.com">Say hello <Mail size={16}/></a>
       </section>
+      {paletteOpen && <div className="command-overlay" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setPaletteOpen(false) }}>
+        <div className="command-dialog" role="dialog" aria-modal="true" aria-label="Portfolio command palette">
+          <div className="command-search"><Search size={18}/><input autoFocus value={paletteQuery} onChange={(event) => setPaletteQuery(event.target.value)} placeholder="Search sections…"/><kbd>ESC</kbd><button type="button" onClick={() => setPaletteOpen(false)} aria-label="Close command palette"><X size={17}/></button></div>
+          <div className="command-results">{paletteItems.map((item) => <a href={item.href} key={item.href} onClick={() => setPaletteOpen(false)}><span><strong>{item.label}</strong><small>{item.detail}</small></span><ChevronRight size={17}/></a>)}
+            {paletteItems.length === 0 && <p>No matching section. Try another search.</p>}
+          </div>
+          <div className="command-hint"><Command size={13}/> Quick navigation <span>Ctrl K</span></div>
+        </div>
+      </div>}
     </div>
   )
 }
