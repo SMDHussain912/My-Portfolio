@@ -513,3 +513,31 @@ section[id] { scroll-margin-top: 28px; }
   .learning-card:nth-child(n):hover,
   .other-project-card:nth-child(n):hover { transform: none !important; }
 }
+
+
+/* Responsive scroll-motion safeguards */
+.home-page { overflow-x: clip; }
+.project-card, .skill-card, .learning-card, .journey-item,
+.experience-card, .other-project-card, .approach-grid article {
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+@media (max-width: 700px) {
+  .home-page { overflow-x: clip; }
+  .project-grid, .skills-grid, .learning-grid, .other-projects-grid,
+  .journey-list, .approach-grid { min-width: 0; }
+  .project-card, .skill-card, .learning-card, .other-project-card,
+  .experience-card, .approach-grid article { max-width: 100%; }
+  .project-card h3, .skill-card h3, .learning-card h3,
+  .other-project-card h3 { overflow-wrap: anywhere; }
+  .project-card, .skill-card, .learning-card,
+  .other-project-card, .experience-card, .approach-grid article {
+    transform-style: flat;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card, .skill-card, .learning-card, .journey-item,
+  .experience-card, .other-project-card, .approach-grid article {
+    will-change: auto !important;
+  }
+}
