@@ -117,10 +117,17 @@ export default function HomePage() {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    gsap.fromTo('.project-card', { autoAlpha: 0, y: 14 }, {
-      autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.045, ease: 'power2.out',
-      overwrite: true,
-    })
+    const cards = gsap.utils.toArray<HTMLElement>('.project-card')
+    if (!cards.length) return
+    gsap.killTweensOf(cards)
+    gsap.fromTo(cards,
+      { autoAlpha: 0, y: 34, scale: 0.97, rotateX: 5 },
+      {
+        autoAlpha: 1, y: 0, scale: 1, rotateX: 0,
+        duration: 0.72, stagger: 0.11, ease: 'power3.out',
+        clearProps: 'transform',
+      },
+    )
   }, [projectFilter, projectSearch])
 
   useEffect(() => {
@@ -136,21 +143,110 @@ export default function HomePage() {
           .fromTo('.hero-aside', { autoAlpha: 0, scale: 0.96, x: 18 }, { autoAlpha: 1, scale: 1, x: 0, duration: 0.9 }, '-=0.55')
           .fromTo('.scroll-cue', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '-=0.25')
 
-        const revealTargets = page.querySelectorAll<HTMLElement>(
-          '.intro-strip, .section-heading, .about-copy > p, .education-line, .journey-item, .experience-card, .project-card, .other-project-card, .approach-grid article, .skill-card, .learning-card, .contact-section > *'
-        )
-
-        revealTargets.forEach((element) => {
-          gsap.fromTo(element, { autoAlpha: 0, y: 24 }, {
+        const revealOnScroll = (
+          elements: HTMLElement[],
+          from: gsap.TweenVars,
+          options: gsap.TweenVars = {},
+          stagger = 0.1,
+        ) => {
+          if (!elements.length) return
+          gsap.fromTo(elements, from, {
             autoAlpha: 1,
+            x: 0,
             y: 0,
-            duration: 0.65,
-            ease: 'power2.out',
+            scale: 1,
+            rotateX: 0,
+            rotateY: 0,
+            duration: 0.8,
+            stagger,
+            ease: 'power3.out',
+            ...options,
             scrollTrigger: {
-              trigger: element,
-              start: 'top 88%',
+              trigger: elements[0],
+              start: 'top 82%',
               once: true,
             },
+          })
+        }
+
+        const getCards = (selector: string) =>
+          Array.from(page.querySelectorAll<HTMLElement>(selector))
+
+        // General content keeps a calm upward reveal.
+        const generalTargets = getCards(
+          '.intro-strip, .section-heading, .about-copy > p, .education-line, .journey-item, .experience-card, .other-project-card, .approach-grid article, .contact-section > *'
+        )
+        generalTargets.forEach((element) => {
+          gsap.fromTo(element, { autoAlpha: 0, y: 28 }, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.72,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: element, start: 'top 86%', once: true },
+          })
+        })
+
+        // Featured projects: staggered depth reveal with a slight alternating tilt.
+        const projectCards = getCards('.project-card')
+        projectCards.forEach((card, index) => {
+          gsap.fromTo(card, {
+            autoAlpha: 0,
+            y: 62,
+            scale: 0.94,
+            rotateY: index % 2 === 0 ? -7 : 7,
+          }, {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            rotateY: 0,
+            duration: 0.9,
+            delay: (index % 3) * 0.12,
+            ease: 'power3.out',
+            clearProps: 'transform',
+            scrollTrigger: { trigger: card, start: 'top 84%', once: true },
+          })
+        })
+
+        // Skills: alternating horizontal slides create a flowing grid reveal.
+        getCards('.skill-card').forEach((card, index) => {
+          gsap.fromTo(card, {
+            autoAlpha: 0,
+            x: index % 2 === 0 ? -58 : 58,
+            y: 18,
+            scale: 0.96,
+          }, {
+            autoAlpha: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: 0.78,
+            delay: (index % 3) * 0.1,
+            ease: 'back.out(1.35)',
+            clearProps: 'transform',
+            scrollTrigger: { trigger: card, start: 'top 86%', once: true },
+          })
+        })
+
+        // Learning roadmap: each track rises from a different direction with a soft turn.
+        getCards('.learning-card').forEach((card, index) => {
+          const direction = index % 2 === 0 ? -1 : 1
+          gsap.fromTo(card, {
+            autoAlpha: 0,
+            x: direction * 42,
+            y: 42,
+            rotate: direction * 2.5,
+            scale: 0.97,
+          }, {
+            autoAlpha: 1,
+            x: 0,
+            y: 0,
+            rotate: 0,
+            scale: 1,
+            duration: 0.88,
+            delay: (index % 3) * 0.13,
+            ease: 'power3.out',
+            clearProps: 'transform',
+            scrollTrigger: { trigger: card, start: 'top 86%', once: true },
           })
         })
       }, page)
