@@ -120,15 +120,16 @@ export default function HomePage() {
     const cards = gsap.utils.toArray<HTMLElement>('.project-card')
     if (!cards.length) return
 
-    const horizontalTravel = window.matchMedia('(max-width: 700px)').matches ? 105 : 260
+    const isMobile = window.matchMedia('(max-width: 700px)').matches
+    const horizontalTravel = isMobile ? 42 : 150
     const animations = cards.map((card, index) => {
       const fromLeft = index % 2 === 0
       return gsap.fromTo(card, {
         autoAlpha: 0,
         x: fromLeft ? -horizontalTravel : horizontalTravel,
-        y: 34,
-        scale: 0.94,
-        rotateY: fromLeft ? -8 : 8,
+        y: isMobile ? 22 : 30,
+        scale: isMobile ? 0.98 : 0.95,
+        rotateY: isMobile ? 0 : (fromLeft ? -5 : 5),
       }, {
         autoAlpha: 1,
         x: 0,
@@ -138,9 +139,9 @@ export default function HomePage() {
         ease: 'none',
         scrollTrigger: {
           trigger: card,
-          start: 'top 100%',
-          end: 'top 42%',
-          scrub: 1.15,
+          start: 'top 96%',
+          end: isMobile ? 'top 62%' : 'top 54%',
+          scrub: true,
           invalidateOnRefresh: true,
         },
       })
@@ -211,59 +212,87 @@ export default function HomePage() {
           })
         })
 
-        // Skills travel a clearly visible distance as the user scrolls through the grid.
-        // scrub links the animation to scroll position, so scrolling upward reverses it.
-        const horizontalTravel = window.matchMedia('(max-width: 700px)').matches ? 95 : 230
-
-        getCards('.skill-card').forEach((card, index) => {
-          const fromLeft = index % 2 === 0
+        const isMobile = window.matchMedia('(max-width: 700px)').matches
+        const horizontalTravel = isMobile ? 38 : 145
+        const makeScrollCard = (
+          card: HTMLElement,
+          fromX: number,
+          index: number,
+          end: string,
+          extra: gsap.TweenVars = {},
+        ) => {
           gsap.fromTo(card, {
             autoAlpha: 0,
-            x: fromLeft ? -horizontalTravel : horizontalTravel,
-            y: 26,
-            scale: 0.94,
-            rotateY: fromLeft ? -9 : 9,
-          }, {
-            autoAlpha: 1,
-            x: 0,
-            y: 0,
-            scale: 1,
-            rotateY: 0,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 100%',
-              end: 'top 40%',
-              scrub: 1.2,
-              invalidateOnRefresh: true,
-            },
-          })
-        })
-
-        // Learning cards sweep across the viewport in the opposite direction.
-        getCards('.learning-card').forEach((card, index) => {
-          const fromRight = index % 2 === 0
-          gsap.fromTo(card, {
-            autoAlpha: 0,
-            x: fromRight ? horizontalTravel : -horizontalTravel,
-            y: 34,
-            scale: 0.95,
-            rotate: fromRight ? 3 : -3,
+            x: fromX,
+            y: isMobile ? 18 : 28,
+            scale: isMobile ? 0.985 : 0.96,
+            ...extra,
           }, {
             autoAlpha: 1,
             x: 0,
             y: 0,
             scale: 1,
             rotate: 0,
+            rotateY: 0,
             ease: 'none',
             scrollTrigger: {
               trigger: card,
-              start: 'top 100%',
-              end: 'top 40%',
-              scrub: 1.25,
+              start: 'top 96%',
+              end,
+              // No smoothing lag: the card reaches its final position exactly
+              // when its top reaches the end marker, and reverses immediately.
+              scrub: true,
               invalidateOnRefresh: true,
             },
           })
+        }
+
+        // Featured projects: alternating horizontal entrances, responsive travel.
+        getCards('.project-card').forEach((card, index) => {
+          const fromLeft = index % 2 === 0
+          makeScrollCard(
+            card,
+            fromLeft ? -horizontalTravel : horizontalTravel,
+            index,
+            isMobile ? 'top 62%' : 'top 54%',
+            { rotateY: isMobile ? 0 : (fromLeft ? -5 : 5) },
+          )
+        })
+
+        // Skills: left/right sweep. scrub:true removes the lingering animation bug.
+        getCards('.skill-card').forEach((card, index) => {
+          const fromLeft = index % 2 === 0
+          makeScrollCard(
+            card,
+            fromLeft ? -horizontalTravel : horizontalTravel,
+            index,
+            isMobile ? 'top 62%' : 'top 54%',
+            { rotateY: isMobile ? 0 : (fromLeft ? -4 : 4) },
+          )
+        })
+
+        // Learning roadmap: reverse the direction pattern for visual variety.
+        getCards('.learning-card').forEach((card, index) => {
+          const fromRight = index % 2 === 0
+          makeScrollCard(
+            card,
+            fromRight ? horizontalTravel : -horizontalTravel,
+            index,
+            isMobile ? 'top 62%' : 'top 54%',
+            { rotate: isMobile ? 0 : (fromRight ? 2 : -2) },
+          )
+        })
+
+        // Other content cards also receive scroll-linked motion, not just hover effects.
+        getCards('.journey-item, .experience-card, .other-project-card, .approach-grid article').forEach((card, index) => {
+          const fromLeft = index % 2 === 0
+          makeScrollCard(
+            card,
+            fromLeft ? -horizontalTravel : horizontalTravel,
+            index,
+            isMobile ? 'top 64%' : 'top 56%',
+            { rotateY: isMobile ? 0 : (fromLeft ? -3 : 3) },
+          )
         })
       }, page)
 
