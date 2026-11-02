@@ -169,38 +169,12 @@ export default function HomePage() {
           .fromTo('.hero-aside', { autoAlpha: 0, scale: 0.96, x: 18 }, { autoAlpha: 1, scale: 1, x: 0, duration: 0.9 }, '-=0.55')
           .fromTo('.scroll-cue', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '-=0.25')
 
-        const revealOnScroll = (
-          elements: HTMLElement[],
-          from: gsap.TweenVars,
-          options: gsap.TweenVars = {},
-          stagger = 0.1,
-        ) => {
-          if (!elements.length) return
-          gsap.fromTo(elements, from, {
-            autoAlpha: 1,
-            x: 0,
-            y: 0,
-            scale: 1,
-            rotateX: 0,
-            rotateY: 0,
-            duration: 0.8,
-            stagger,
-            ease: 'power3.out',
-            ...options,
-            scrollTrigger: {
-              trigger: elements[0],
-              start: 'top 82%',
-              once: true,
-            },
-          })
-        }
-
         const getCards = (selector: string) =>
           Array.from(page.querySelectorAll<HTMLElement>(selector))
 
         // General content keeps a calm upward reveal.
         const generalTargets = getCards(
-          '.intro-strip, .section-heading, .about-copy > p, .education-line, .journey-item, .experience-card, .other-project-card, .approach-grid article, .contact-section > *'
+          '.intro-strip, .section-heading, .about-copy > p, .education-line, .contact-section > *'
         )
         generalTargets.forEach((element) => {
           gsap.fromTo(element, { autoAlpha: 0, y: 28 }, {
