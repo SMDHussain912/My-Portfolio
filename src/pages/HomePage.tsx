@@ -43,10 +43,21 @@ const projects = [
 ]
 
 const skillGroups = [
-  { icon: Code2, title: 'Programming', items: 'C · C++ · Python · JavaScript · TypeScript · Java · C#' },
-  { icon: Globe2, title: 'Web & Backend', items: 'React · Node.js · Express · REST APIs · HTML · CSS' },
-  { icon: Cpu, title: 'Data & AI', items: 'NumPy · Pandas · scikit-learn · PyTorch · PostgreSQL · MongoDB' },
-  { icon: Gamepad2, title: 'Creative & Systems', items: 'Unity · Godot · Blender · OpenGL · Linux · Git' },
+  { icon: Code2, title: 'Programming languages', items: 'C · C++ · Python · Java · JavaScript · TypeScript · C# · PHP · Lua · Kotlin' },
+  { icon: Globe2, title: 'Frontend & application development', items: 'HTML · CSS · React · Vite · React Router · Next.js · Flutter (learning)' },
+  { icon: Terminal, title: 'Backend & databases', items: 'Node.js · Express.js · REST APIs · JWT · Socket.IO · MongoDB · PostgreSQL · MySQL · SQLite · SQL' },
+  { icon: Cpu, title: 'Data science & machine learning', items: 'NumPy · Pandas · Matplotlib · scikit-learn · PyTorch · model training fundamentals' },
+  { icon: Gamepad2, title: 'Game & graphics development', items: 'Unity · Godot · Blender · OpenGL · SDL2 · game-engine architecture' },
+  { icon: Globe2, title: 'Developer tools & platforms', items: 'Git · GitHub · Linux · CMake · Docker · Firebase · AWS · Vercel · Render' },
+]
+
+const learningTracks = [
+  { label: '01', title: 'Machine learning foundations', detail: 'Strengthening the mathematics behind ML—linear algebra, calculus, probability and statistics—then applying it through scikit-learn and PyTorch.' },
+  { label: '02', title: 'Deep learning & modern AI', detail: 'Going deeper into neural networks, tokenization, embeddings, transformers and local language-model systems.' },
+  { label: '03', title: 'Advanced C++ & engine development', detail: 'Improving C++ architecture, memory and performance fundamentals, graphics programming, physics integration and tools for ArcEngine.' },
+  { label: '04', title: 'Modern web & mobile engineering', detail: 'Building stronger TypeScript and Next.js skills while learning Flutter and cross-platform mobile application development.' },
+  { label: '05', title: 'Systems, DevOps & security', detail: 'Exploring Linux internals, deployment workflows, containers, CI/CD, networking and practical cybersecurity foundations.' },
+  { label: '06', title: 'Robotics & intelligent systems', detail: 'Connecting programming, sensors, simulation and machine learning to understand autonomous and interactive systems.' },
 ]
 
 export default function HomePage() {
@@ -98,8 +109,10 @@ export default function HomePage() {
           <h2>Curious by nature.<br /><span>Builder by practice.</span></h2>
         </div>
         <div className="about-copy">
-          <p>I'm a Computer Engineering diploma student at Andhra Polytechnic, Kakinada. I enjoy learning how technology works beneath the surface and applying that knowledge to build useful software.</p>
-          <p>My interests move between full-stack development, machine learning, game development and systems programming. I learn best by building, testing ideas, reading source code and improving through real engineering challenges.</p>
+          <p>I'm a Computer Engineering diploma student at Andhra Polytechnic, Kakinada, with a broad interest in how software and computing systems are designed. I enjoy moving between layers of technology: from building user interfaces and backend services to exploring machine learning, graphics and lower-level systems.</p>
+          <p>I don't want to limit myself to a single framework or development area. I like understanding the fundamentals behind the tools I use, experimenting with unfamiliar technologies and connecting ideas across disciplines. That curiosity has led me to work on institutional web applications, a local AI assistant and a C++ game-engine prototype.</p>
+          <p>My approach is practical: learn a concept, build something with it, test where it breaks, read the documentation and improve the design. I'm still growing as an engineer, and I prefer to describe my work honestly—what I've used, what I've built and what I'm actively learning.</p>
+          <p>My long-term direction is to become a versatile software engineer with strong foundations in computer science, capable of building reliable applications as well as understanding the systems underneath them.</p>
           <div className="education-line"><GraduationCap size={19}/><span><strong>Andhra Polytechnic, Kakinada</strong><small>Diploma in Computer Engineering · 2024—2027</small></span></div>
         </div>
       </section>
@@ -178,8 +191,9 @@ export default function HomePage() {
 
       <section className="skills-section section-shell" id="skills">
         <div className="section-heading compact-heading">
-          <span className="section-index">06 / TOOLKIT</span>
-          <h2>Tools I work <span>with.</span></h2>
+          <span className="section-index">06 / TECHNICAL TOOLKIT</span>
+          <h2>Technologies I've <span>worked with.</span></h2>
+          <p>A snapshot of languages, frameworks, libraries and tools I've studied or used across coursework and projects. This is a working toolkit—not a claim of expert-level proficiency in every item.</p>
         </div>
         <div className="skills-grid">
           {skillGroups.map(group => {
@@ -189,8 +203,19 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="learning-section section-shell" id="learning">
+        <div className="section-heading compact-heading">
+          <span className="section-index">07 / CURRENT LEARNING ROADMAP</span>
+          <h2>What I'm <span>learning next.</span></h2>
+          <p>These are active learning directions and deeper areas I want to develop—not technologies I'm claiming to have mastered.</p>
+        </div>
+        <div className="learning-grid">
+          {learningTracks.map(track => <article className="learning-card" key={track.label}><span>{track.label}</span><div><h3>{track.title}</h3><p>{track.detail}</p></div></article>)}
+        </div>
+      </section>
+
       <section className="contact-section section-shell" id="contact">
-        <span className="section-index">07 / GET IN TOUCH</span>
+        <span className="section-index">08 / GET IN TOUCH</span>
         <h2>Have an idea?<br/><span>Let's build something.</span></h2>
         <p>I'm interested in meaningful projects, learning opportunities and conversations about engineering.</p>
         <a className="button button-primary" href="mailto:shaikmahammadhussain9121@gmail.com">Say hello <Mail size={16}/></a>
