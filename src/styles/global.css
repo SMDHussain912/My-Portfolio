@@ -873,3 +873,5 @@ section[id] { scroll-margin-top: 28px; }
 @media(prefers-reduced-motion:reduce) {
   .tech-chip,.tech-project>svg { transition:none; }
 }
+
+@media(min-width:1401px){.site-header .brand{flex-basis:210px;min-width:210px;font-size:10px}.site-header .nav-links{gap:clamp(8px,.7vw,12px);font-size:11px}.site-header .palette-shortcut{padding:6px 8px}.site-header .nav-contact{padding:10px 11px}}
