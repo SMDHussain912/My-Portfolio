@@ -21,7 +21,7 @@ export default function App() {
             <button className="accent-swatch swatch-amber" type="button" aria-label="Amber accent" aria-pressed={accent==='amber'} onClick={()=>setAccent('amber')} />
             <button className="accent-swatch swatch-mint" type="button" aria-label="Mint accent" aria-pressed={accent==='mint'} onClick={()=>setAccent('mint')} />
           </div>
-          <button className="palette-shortcut" type="button" onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", ctrlKey: true }))} aria-label="Open quick navigation"><span>⌘</span> K</button><a className="nav-contact" href="mailto:shaikmahammadhussain9121@gmail.com">Let's talk <span>↗</span></a>
+          <button className="palette-shortcut" type="button" onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", ctrlKey: true }))} aria-label="Open quick navigation"><span>CTRL</span> K</button><a className="nav-contact" href="mailto:shaikmahammadhussain9121@gmail.com">Let's talk <span>↗</span></a>
         </nav>
       </header>
       <Outlet />
