@@ -6,13 +6,13 @@ import './styles/global.css'
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [accent, setAccent] = useState('cyan')
-  const links = [{label:'Home',href:'/#home'},{label:'About',href:'/#about'},{label:'Journey',href:'/#journey'},{label:'Experience',href:'/#experience'},{label:'Projects',href:'/#projects'},{label:'More work',href:'/#more-projects'},{label:'GitHub',href:'/#github-activity'},{label:'Skills',href:'/#skills'},{label:'Learning',href:'/#learning'},{label:'Terminal',href:'/#terminal'}]
+  const links = [{label:'Home',href:'/#home'},{label:'About',href:'/#about'},{label:'Journey',href:'/#journey'},{label:'Experience',href:'/#experience'},{label:'Projects',href:'/#projects'},{label:'More work',href:'/#more-projects'},{label:'GitHub',href:'/#github-activity'},{label:'Tech map',href:'/#tech-lab'},{label:'Skills',href:'/#skills'},{label:'Learning',href:'/#learning'},{label:'Terminal',href:'/#terminal'}]
   return (
     <div className="site-shell" data-accent={accent}>
       <header className="site-header">
         <Link className="brand" to="/" aria-label="Shaik Mahammad Hussain home"><span className="brand-mark">SH</span><span>SHAIK MAHAMMAD HUSSAIN<small>ENGINEERING · SOFTWARE · IDEAS</small></span></Link>
-        <button className="mobile-menu" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={()=>setMenuOpen(!menuOpen)}><Menu size={21}/></button>
-        <nav className={menuOpen?'nav-links nav-open':'nav-links'} aria-label="Main navigation">
+        <button className="mobile-menu" aria-label="Toggle navigation" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={()=>setMenuOpen(!menuOpen)}><Menu size={21}/></button>
+        <nav id="primary-navigation" className={menuOpen?'nav-links nav-open':'nav-links'} aria-label="Main navigation">
           {links.map(link=><a key={link.label} href={link.href} onClick={()=>setMenuOpen(false)}>{link.label}</a>)}
           <div className="accent-switcher" role="group" aria-label="Choose portfolio accent color">
             <span className="accent-switcher-label">COLOR</span>
