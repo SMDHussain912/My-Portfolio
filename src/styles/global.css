@@ -214,7 +214,7 @@ section[id] { scroll-margin-top: 28px; }
 .accent-swatch { width:19px; height:19px; padding:0; border:2px solid transparent; border-radius:50%; cursor:pointer; background:var(--swatch); }
 .accent-swatch[aria-pressed="true"] { outline:2px solid var(--swatch); outline-offset:2px; }
 .accent-swatch:focus-visible { outline:2px solid var(--text); outline-offset:3px; }
-.site-shell { --accent:#62e6f2; --accent-soft:rgba(98,230,242,.14); }
+.site-shell { --accent:#62e6f2; --accent-soft:rgba(98,230,242,.14); --cyan:var(--accent); }
 .site-shell[data-accent="violet"] { --accent:#b69aff; --accent-soft:rgba(182,154,255,.15); }
 .site-shell[data-accent="amber"] { --accent:#ffc477; --accent-soft:rgba(255,196,119,.15); }
 .site-shell[data-accent="mint"] { --accent:#78e6b1; --accent-soft:rgba(120,230,177,.15); }
@@ -244,3 +244,8 @@ section[id] { scroll-margin-top: 28px; }
 @media(prefers-reduced-motion:reduce) {
   .filter-chip,.accent-swatch { transition:none!important; }
 }
+
+.accent-swatch.swatch-cyan { --swatch:#62e6f2; }
+.accent-swatch.swatch-violet { --swatch:#b69aff; }
+.accent-swatch.swatch-amber { --swatch:#ffc477; }
+.accent-swatch.swatch-mint { --swatch:#78e6b1; }
