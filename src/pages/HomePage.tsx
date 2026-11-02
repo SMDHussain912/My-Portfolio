@@ -1,4 +1,9 @@
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles, GraduationCap, Terminal, Cpu, Gamepad2, Globe2 } from 'lucide-react'
+
+ gsap.registerPlugin(ScrollTrigger)
 
 const focusAreas = ['Full-Stack Development', 'AI & Machine Learning', 'Game Development', 'Systems Programming']
 
@@ -92,8 +97,48 @@ const learningTracks = [
 ]
 
 export default function HomePage() {
+  const pageRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const page = pageRef.current
+    if (!page) return
+
+    const motion = gsap.matchMedia()
+    motion.add('(prefers-reduced-motion: no-preference)', () => {
+      const context = gsap.context(() => {
+        const hero = gsap.timeline({ defaults: { ease: 'power3.out' } })
+        hero
+          .fromTo('.hero-copy > *', { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: 0.72, stagger: 0.09 })
+          .fromTo('.hero-aside', { autoAlpha: 0, scale: 0.96, x: 18 }, { autoAlpha: 1, scale: 1, x: 0, duration: 0.9 }, '-=0.55')
+          .fromTo('.scroll-cue', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '-=0.25')
+
+        const revealTargets = page.querySelectorAll<HTMLElement>(
+          '.intro-strip, .section-heading, .about-copy > p, .education-line, .journey-item, .experience-card, .project-card, .other-project-card, .approach-grid article, .skill-card, .learning-card, .contact-section > *'
+        )
+
+        revealTargets.forEach((element) => {
+          gsap.fromTo(element, { autoAlpha: 0, y: 24 }, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.65,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 88%',
+              once: true,
+            },
+          })
+        })
+      }, page)
+
+      return () => context.revert()
+    })
+
+    return () => motion.revert()
+  }, [])
+
   return (
-    <div className="home-page">
+    <div className="home-page" ref={pageRef}>
       <section className="hero section-shell" id="home" aria-labelledby="hero-title">
         <div className="hero-copy">
           <div className="eyebrow"><span className="status-dot" /> COMPUTER ENGINEERING STUDENT · DEVELOPER</div>
