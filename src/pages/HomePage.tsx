@@ -11,44 +11,75 @@ const journey = [
 
 const projects = [
   {
-    number: '01',
-    name: 'PM-SETU',
-    category: 'Institutional Web Platform',
-    description: 'A government-focused platform developed during my NIC industrial training, with backend workflows, database integration, API development and validation.',
-    stack: ['TypeScript', 'Prisma', 'PostgreSQL'],
-    status: 'Project work completed',
+    number: '01', name: 'PM-SETU', category: 'Government / Institutional Platform',
+    description: 'Contributed backend development during NIC industrial training for an institutional platform supporting ITI upgradation workflows. Work included API development, validation, application logic and relational database integration.',
+    stack: ['TypeScript', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Docker'],
+    status: 'Project contribution completed',
     links: [
       { label: 'Frontend', href: 'https://github.com/SMDHussain912/PM-SETU-Frontend' },
       { label: 'Backend', href: 'https://github.com/SMDHussain912/PM-SETU-Backend' },
     ],
   },
   {
-    number: '02',
-    name: 'ArcEngine',
-    category: 'C++ Game Engine',
-    description: 'An experimental 2D and 3D game engine focused on understanding rendering, physics, scripting and editor architecture. The current work is an evolving prototype, not a production engine.',
-    stack: ['C++', 'OpenGL', 'Lua', 'CMake'],
-    status: 'Prototype · In development',
-    links: [{ label: 'View repository', href: 'https://github.com/SMDHussain912/ArcEngine' }],
+    number: '02', name: 'ArcEngine', category: 'C++ Game Engine',
+    description: 'An independent 2D/3D game-engine project exploring rendering, scene and entity systems, physics integration, scripting and editor architecture. The current codebase is an evolving prototype.',
+    stack: ['C++17', 'OpenGL', 'Box2D', 'CMake', 'Lua'],
+    status: 'In development',
+    links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/ArcEngine' }],
   },
   {
-    number: '03',
-    name: 'MiraV2',
-    category: 'Local AI Assistant',
-    description: 'A local-first Linux desktop assistant exploring speech recognition, intent handling and modular C++ architecture, with privacy and local execution as core goals.',
-    stack: ['C++', 'Python', 'Whisper.cpp'],
-    status: 'Early development',
-    links: [{ label: 'View repository', href: 'https://github.com/SMDHussain912/MiraV2' }],
+    number: '03', name: 'MiraV2', category: 'Local AI / Linux Assistant',
+    description: 'A modular, local-first Linux voice assistant. It explores on-device speech transcription, intent understanding and privacy-conscious automation through a C++-centred architecture.',
+    stack: ['C++', 'Python', 'PyTorch', 'ONNX', 'whisper.cpp', 'PipeWire'],
+    status: 'In development',
+    links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/MiraV2' }],
+  },
+  {
+    number: '04', name: 'ArcTester', category: 'Education / Examination Platform',
+    description: 'An offline-first AP ECET CSE mock-test application with an exam engine, question management and performance analytics. Designed to run locally after installation.',
+    stack: ['Next.js', 'React', 'TypeScript', 'Express', 'Prisma', 'SQLite', 'Vitest'],
+    status: 'Actively developing',
+    links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/ArcTester' }],
+  },
+  {
+    number: '05', name: 'Freight Broker CRM & Carrier Vetting', category: 'Professional Full-Stack Product',
+    description: 'Professional development work at Ricoz Innovation on a freight-brokerage CRM, covering carrier management and vetting workflows across web, backend and mobile applications.',
+    stack: ['Next.js', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Expo'],
+    status: 'Professional work · Ricoz Innovation',
+    links: [
+      { label: 'Frontend', href: 'https://github.com/SMDHussain912/FriegthBrokerCMR-Frontend' },
+      { label: 'Backend', href: 'https://github.com/SMDHussain912/FriegthBrokerCMR-Backend' },
+      { label: 'Mobile', href: 'https://github.com/SMDHussain912/FriegthBrokerCMR-Mobile' },
+    ],
+  },
+  {
+    number: '06', name: 'Polling Officer Allocation System', category: 'Government Workflow / Allocation Software',
+    description: 'An implemented personnel-allocation system for polling operations, covering personnel data, imports, multi-stage randomization, training workflows, reporting and audit capabilities.',
+    stack: ['React', 'Node.js', 'Express', 'PostgreSQL', 'JWT', 'Excel / CSV'],
+    status: 'Implemented',
+    links: [{ label: 'Public backend repository', href: 'https://github.com/SMDHussain912/Polling-Officer-Allocation-Software-Backend' }],
   },
 ]
 
+const otherProjects = [
+  { name: 'UniSphere', category: 'Learning & Career Platform', description: 'A platform combining programming learning, exam practice, progress tracking, job and internship discovery, and student-focused tools.', href: 'https://github.com/SMDHussain912/UniSphere' },
+  { name: 'UniChat', category: 'Communication Application', description: 'A full-stack chat application project exploring real-time communication and application architecture.', href: 'https://github.com/SMDHussain912/UniChat' },
+  { name: 'RobotSimulator', category: 'C++ / Robotics Simulation', description: 'A C++ project exploring robot movement and simulation through a custom engine and simulator structure.', href: 'https://github.com/SMDHussain912/RobotSimulator' },
+  { name: 'Career Navigator', category: 'AI-Powered Learning Platform', description: 'A web platform for career recommendations, learning roadmaps, assessments, coding practice and learning progress.', href: 'https://github.com/SMDHussain912/Web-server' },
+  { name: 'UniTech-Site', category: 'Organization Website', description: 'A responsive website for an independent technology and software-development studio.', href: 'https://github.com/SMDHussain912/UniTech-Site' },
+  { name: 'THE-SYSTEM', category: 'Java Application', description: 'A Solo Leveling-inspired progression and level-system project built around gamified personal development.', href: 'https://github.com/SMDHussain912/THE-SYSTEM' },
+  { name: 'EGCOR', category: 'Institutional Project', description: 'A recruitment-oriented project associated with the East Godavari Collector Office training work.', href: 'https://github.com/SMDHussain912/EGCOR' },
+  { name: 'Arc-Dev-Lab', category: 'Programming Laboratory', description: 'A collection of programming experiments, exercises and explorations across languages and development areas.', href: 'https://github.com/SMDHussain912/Arc-Dev-Lab' },
+]
+
 const skillGroups = [
-  { icon: Code2, title: 'Programming languages', items: 'C · C++ · Python · Java · JavaScript · TypeScript · C# · PHP · Lua · Kotlin' },
-  { icon: Globe2, title: 'Frontend & application development', items: 'HTML · CSS · React · Vite · React Router' },
-  { icon: Terminal, title: 'Backend & databases', items: 'Node.js · Express.js · REST APIs · JWT · Socket.IO · MongoDB · PostgreSQL · MySQL · SQLite · SQL' },
-  { icon: Cpu, title: 'Data science & machine learning', items: 'NumPy · Pandas · Matplotlib · scikit-learn · PyTorch · model training fundamentals' },
-  { icon: Gamepad2, title: 'Game & graphics development', items: 'Unity · Godot · Blender · OpenGL · SDL2 · game-engine architecture' },
-  { icon: Globe2, title: 'Developer tools & platforms', items: 'Git · GitHub · Linux · CMake · Docker · Firebase · AWS · Vercel · Render' },
+  { icon: Code2, title: 'Programming languages', items: 'C · C++ · Python · JavaScript · TypeScript · C# · Java · Kotlin · PHP · Lua' },
+  { icon: Globe2, title: 'Web & frontend development', items: 'HTML · CSS · React · Next.js · Vite · React Router · Three.js · Node.js · Express.js · REST APIs · JWT · Socket.IO · Prisma · Swagger' },
+  { icon: Terminal, title: 'Databases', items: 'PostgreSQL · MongoDB · MySQL · SQLite · SQL' },
+  { icon: Cpu, title: 'Machine learning & data science', items: 'PyTorch · scikit-learn · NumPy · Pandas · Matplotlib · ONNX' },
+  { icon: Gamepad2, title: 'Game & graphics development', items: 'Unity · Godot · Blender · OpenGL · SDL2' },
+  { icon: Globe2, title: 'Mobile development', items: 'Android Studio · Expo' },
+  { icon: Terminal, title: 'Tools & systems', items: 'Git · GitHub · Docker · Linux · CMake · AWS' },
 ]
 
 const learningTracks = [
@@ -177,6 +208,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="other-projects-section section-shell" id="more-projects">
+        <div className="section-heading compact-heading">
+          <span className="section-index">05 / MORE BUILDS</span>
+          <h2>More things I've <span>worked on.</span></h2>
+          <p>A wider look at independent applications, experiments and learning projects across my GitHub repositories.</p>
+        </div>
+        <div className="other-projects-grid">
+          {otherProjects.map(project => (
+            <article className="other-project-card" key={project.name}>
+              <span>{project.category}</span>
+              <h3>{project.name}</h3>
+              <p>{project.description}</p>
+              <a href={project.href} target="_blank" rel="noreferrer">Explore repository <ArrowUpRight size={14}/></a>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="approach-section section-shell">
         <div className="section-heading compact-heading">
           <span className="section-index">05 / HOW I WORK</span>
@@ -191,7 +240,7 @@ export default function HomePage() {
 
       <section className="skills-section section-shell" id="skills">
         <div className="section-heading compact-heading">
-          <span className="section-index">06 / TECHNICAL TOOLKIT</span>
+          <span className="section-index">07 / TECHNICAL TOOLKIT</span>
           <h2>Technologies I've <span>worked with.</span></h2>
           <p>A snapshot of languages, frameworks, libraries and tools I've studied or used across coursework and projects. This is a working toolkit—not a claim of expert-level proficiency in every item.</p>
         </div>
@@ -205,7 +254,7 @@ export default function HomePage() {
 
       <section className="learning-section section-shell" id="learning">
         <div className="section-heading compact-heading">
-          <span className="section-index">07 / CURRENT LEARNING ROADMAP</span>
+          <span className="section-index">08 / CURRENT LEARNING ROADMAP</span>
           <h2>What I'm <span>learning next.</span></h2>
           <p>These are active learning directions and deeper areas I want to develop—not technologies I'm claiming to have mastered.</p>
         </div>
@@ -215,7 +264,7 @@ export default function HomePage() {
       </section>
 
       <section className="contact-section section-shell" id="contact">
-        <span className="section-index">08 / GET IN TOUCH</span>
+        <span className="section-index">09 / GET IN TOUCH</span>
         <h2>Have an idea?<br/><span>Let's build something.</span></h2>
         <p>I'm interested in meaningful projects, learning opportunities and conversations about engineering.</p>
         <a className="button button-primary" href="mailto:shaikmahammadhussain9121@gmail.com">Say hello <Mail size={16}/></a>
