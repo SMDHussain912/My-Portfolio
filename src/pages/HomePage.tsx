@@ -111,6 +111,7 @@ export default function HomePage() {
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null)
   const [paletteQuery, setPaletteQuery] = useState('')
+  const [showBackToTop, setShowBackToTop] = useState(false)
   const projectFilters = ['All', 'Personal', 'Professional', 'Institutional']
   const visibleProjects = useMemo(() => projects.filter((project) => {
     const kind = project.name === 'Freight Broker CRM & Carrier Vetting'
@@ -125,6 +126,40 @@ export default function HomePage() {
     return matchesFilter && matchesSearch
   }), [projectFilter, projectSearch])
 
+
+  useEffect(() => {
+    let ticking = false
+    const updateScrollUI = () => {
+      if (ticking) return
+      ticking = true
+      window.requestAnimationFrame(() => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight
+        const progress = scrollable > 0 ? window.scrollY / scrollable : 0
+        document.documentElement.style.setProperty('--reading-progress', String(progress))
+        setShowBackToTop(window.scrollY > 620)
+        ticking = false
+      })
+    }
+    updateScrollUI()
+    window.addEventListener('scroll', updateScrollUI, { passive: true })
+    window.addEventListener('resize', updateScrollUI)
+    return () => {
+      window.removeEventListener('scroll', updateScrollUI)
+      window.removeEventListener('resize', updateScrollUI)
+    }
+  }, [])
+
+  useEffect(() => {
+    const page = pageRef.current
+    if (!page || window.matchMedia('(hover: none)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const moveSpotlight = (event: PointerEvent) => {
+      const bounds = page.getBoundingClientRect()
+      page.style.setProperty('--pointer-x', `${event.clientX - bounds.left}px`)
+      page.style.setProperty('--pointer-y', `${event.clientY - bounds.top + window.scrollY}px`)
+    }
+    page.addEventListener('pointermove', moveSpotlight, { passive: true })
+    return () => page.removeEventListener('pointermove', moveSpotlight)
+  }, [])
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -174,17 +209,19 @@ export default function HomePage() {
     const command = terminalInput.trim().toLowerCase()
     if (!command) return
     const responses: Record<string, string> = {
-      help: 'Available: help · about · projects · skills · github · contact · clear',
+      help: 'Available: help · about · projects · skills · github · contact · copy · clear',
       about: 'Arc is a multidisciplinary developer exploring web, AI, games and systems engineering.',
       projects: 'Featured work: PM-SETU, ArcEngine, MiraV2, ArcTester, Freight Broker CRM and Polling Officer Allocation.',
       skills: 'C/C++ · Python · TypeScript · React · Node.js · PostgreSQL · PyTorch · Unity · Linux',
       github: 'Opening GitHub profile…',
       contact: 'Email: shaikmahammadhussain9121@gmail.com',
+      copy: 'Copying contact email to clipboard…',
     }
     if (command === 'clear') setTerminalOutput([])
     else {
       setTerminalOutput((lines) => [...lines, 'arc@portfolio:~$ ' + command, responses[command] ?? ('Command not found: ' + command + '. Type help.')])
       if (command === 'github') window.open('https://github.com/SMDHussain912', '_blank', 'noopener,noreferrer')
+      if (command === 'copy') navigator.clipboard?.writeText('shaikmahammadhussain9121@gmail.com').then(() => setTerminalOutput((lines) => [...lines, 'Email copied to clipboard.'])).catch(() => setTerminalOutput((lines) => [...lines, 'Clipboard unavailable. Email: shaikmahammadhussain9121@gmail.com']))
     }
     setTerminalInput('')
   }
@@ -348,6 +385,7 @@ export default function HomePage() {
 
   return (
     <div className="home-page" ref={pageRef}>
+      <div className="reading-progress" aria-hidden="true" />
       <section className="hero section-shell" id="home" aria-labelledby="hero-title">
         <div className="hero-copy">
           <div className="eyebrow"><span className="status-dot" /> COMPUTER ENGINEERING STUDENT · DEVELOPER</div>
@@ -638,6 +676,7 @@ export default function HomePage() {
           <section><h3>Explore the source</h3><div className="case-study-links">{selectedProject.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} <ArrowUpRight size={15}/></a>)}</div></section>
         </article>
       </div>}
+      {showBackToTop && <button className="back-to-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })} aria-label="Back to top"><ArrowUpRight size={18}/><span>TOP</span></button>}
       {paletteOpen && <div className="command-overlay" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setPaletteOpen(false) }}>
         <div className="command-dialog" role="dialog" aria-modal="true" aria-label="Portfolio command palette">
           <div className="command-search"><Search size={18}/><input autoFocus value={paletteQuery} onChange={(event) => setPaletteQuery(event.target.value)} placeholder="Search sections…"/><kbd>ESC</kbd><button type="button" onClick={() => setPaletteOpen(false)} aria-label="Close command palette"><X size={17}/></button></div>
