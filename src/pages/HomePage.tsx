@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles, GraduationCap, Terminal, Cpu, Gamepad2, Globe2, Github, Search, X, Activity, Command, ChevronRight } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles, GraduationCap, Terminal, Cpu, Gamepad2, Globe2, Search, X, Activity, Command, ChevronRight } from 'lucide-react'
 
  gsap.registerPlugin(ScrollTrigger)
 
@@ -541,12 +541,12 @@ export default function HomePage() {
         </div>
         <div className="github-panel">
           <div className="github-profile">
-            <div className="github-mark"><Github size={28}/></div>
+            <div className="github-mark"><Code2 size={28}/></div>
             <div><strong>SMDHussain912</strong><span>Public GitHub profile</span></div>
             <a href="https://github.com/SMDHussain912" target="_blank" rel="noreferrer">View profile <ArrowUpRight size={14}/></a>
           </div>
           {githubState === 'loading' && <p className="github-state"><Activity size={16}/> Connecting to GitHub…</p>}
-          {githubState === 'error' && <p className="github-state">GitHub's public API is temporarily unavailable. Visit the profile for the latest activity.</p>}
+          {githubState === 'error' && <p className="github-state">GitHub's public API could not be reached right now. The rest of the portfolio still works, and you can open the profile directly.</p>}
           {githubState === 'ready' && githubProfile && <>
             <div className="github-stats">
               <div><strong>{githubProfile.public_repos}</strong><span>Public repositories</span></div>
