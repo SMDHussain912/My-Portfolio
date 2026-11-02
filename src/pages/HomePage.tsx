@@ -119,15 +119,40 @@ export default function HomePage() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const cards = gsap.utils.toArray<HTMLElement>('.project-card')
     if (!cards.length) return
-    gsap.killTweensOf(cards)
-    gsap.fromTo(cards,
-      { autoAlpha: 0, y: 34, scale: 0.97, rotateX: 5 },
-      {
-        autoAlpha: 1, y: 0, scale: 1, rotateX: 0,
-        duration: 0.72, stagger: 0.11, ease: 'power3.out',
-        clearProps: 'transform',
-      },
-    )
+
+    const horizontalTravel = window.matchMedia('(max-width: 700px)').matches ? 105 : 260
+    const animations = cards.map((card, index) => {
+      const fromLeft = index % 2 === 0
+      return gsap.fromTo(card, {
+        autoAlpha: 0,
+        x: fromLeft ? -horizontalTravel : horizontalTravel,
+        y: 34,
+        scale: 0.94,
+        rotateY: fromLeft ? -8 : 8,
+      }, {
+        autoAlpha: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        rotateY: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 100%',
+          end: 'top 42%',
+          scrub: 1.15,
+          invalidateOnRefresh: true,
+        },
+      })
+    })
+
+    ScrollTrigger.refresh()
+    return () => {
+      animations.forEach((animation) => {
+        animation.scrollTrigger?.kill()
+        animation.kill()
+      })
+    }
   }, [projectFilter, projectSearch])
 
   useEffect(() => {
@@ -186,67 +211,58 @@ export default function HomePage() {
           })
         })
 
-        // Featured projects: staggered depth reveal with a slight alternating tilt.
-        const projectCards = getCards('.project-card')
-        projectCards.forEach((card, index) => {
+        // Skills travel a clearly visible distance as the user scrolls through the grid.
+        // scrub links the animation to scroll position, so scrolling upward reverses it.
+        const horizontalTravel = window.matchMedia('(max-width: 700px)').matches ? 95 : 230
+
+        getCards('.skill-card').forEach((card, index) => {
+          const fromLeft = index % 2 === 0
           gsap.fromTo(card, {
             autoAlpha: 0,
-            y: 62,
+            x: fromLeft ? -horizontalTravel : horizontalTravel,
+            y: 26,
             scale: 0.94,
-            rotateY: index % 2 === 0 ? -7 : 7,
+            rotateY: fromLeft ? -9 : 9,
           }, {
             autoAlpha: 1,
+            x: 0,
             y: 0,
             scale: 1,
             rotateY: 0,
-            duration: 0.9,
-            delay: (index % 3) * 0.12,
-            ease: 'power3.out',
-            clearProps: 'transform',
-            scrollTrigger: { trigger: card, start: 'top 84%', once: true },
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 100%',
+              end: 'top 40%',
+              scrub: 1.2,
+              invalidateOnRefresh: true,
+            },
           })
         })
 
-        // Skills: alternating horizontal slides create a flowing grid reveal.
-        getCards('.skill-card').forEach((card, index) => {
-          gsap.fromTo(card, {
-            autoAlpha: 0,
-            x: index % 2 === 0 ? -58 : 58,
-            y: 18,
-            scale: 0.96,
-          }, {
-            autoAlpha: 1,
-            x: 0,
-            y: 0,
-            scale: 1,
-            duration: 0.78,
-            delay: (index % 3) * 0.1,
-            ease: 'back.out(1.35)',
-            clearProps: 'transform',
-            scrollTrigger: { trigger: card, start: 'top 86%', once: true },
-          })
-        })
-
-        // Learning roadmap: each track rises from a different direction with a soft turn.
+        // Learning cards sweep across the viewport in the opposite direction.
         getCards('.learning-card').forEach((card, index) => {
-          const direction = index % 2 === 0 ? -1 : 1
+          const fromRight = index % 2 === 0
           gsap.fromTo(card, {
             autoAlpha: 0,
-            x: direction * 42,
-            y: 42,
-            rotate: direction * 2.5,
-            scale: 0.97,
+            x: fromRight ? horizontalTravel : -horizontalTravel,
+            y: 34,
+            scale: 0.95,
+            rotate: fromRight ? 3 : -3,
           }, {
             autoAlpha: 1,
             x: 0,
             y: 0,
-            rotate: 0,
             scale: 1,
-            duration: 0.88,
-            delay: (index % 3) * 0.13,
-            ease: 'power3.out',
-            clearProps: 'transform',
-            scrollTrigger: { trigger: card, start: 'top 86%', once: true },
+            rotate: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 100%',
+              end: 'top 40%',
+              scrub: 1.25,
+              invalidateOnRefresh: true,
+            },
           })
         })
       }, page)
