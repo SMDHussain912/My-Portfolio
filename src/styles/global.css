@@ -186,3 +186,61 @@ section[id] { scroll-margin-top: 28px; }
   .project-card, .other-project-card, .skill-card, .learning-card, .approach-grid article,
   .button, .nav-links a:not(.nav-contact)::after { transition: none !important; }
 }
+
+
+/* Interactive portfolio controls and richer but restrained accent palette */
+.project-controls { display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; margin:0 0 12px; }
+.project-filter-list { display:flex; gap:8px; flex-wrap:wrap; }
+.filter-chip {
+  display:inline-flex; align-items:center; gap:8px; min-height:39px; padding:8px 13px;
+  color:#aab9cc; background:rgba(15,26,42,.68); border:1px solid var(--line);
+  border-radius:999px; cursor:pointer; font-size:12px; font-weight:700;
+  transition:color .2s,border-color .2s,background .2s,transform .2s;
+}
+.filter-chip:hover { color:var(--text); border-color:var(--accent); transform:translateY(-1px); }
+.filter-chip.is-active { color:#07131b; background:var(--accent); border-color:var(--accent); }
+.filter-chip span { display:inline-grid; place-items:center; min-width:19px; height:19px; padding:0 5px; border-radius:99px; background:rgba(7,19,27,.15); font-size:10px; }
+.project-search { display:flex; align-items:center; gap:9px; min-height:42px; width:min(100%,310px); padding:0 13px; border:1px solid var(--line); border-radius:7px; color:var(--accent); background:rgba(13,21,34,.8); }
+.project-search:focus-within { border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 15%,transparent); }
+.project-search input { width:100%; min-width:0; border:0; outline:0; color:var(--text); background:transparent; font:inherit; font-size:12px; }
+.project-search input::placeholder { color:#71839a; }
+.project-results { margin:0 0 18px; color:#7f91a8; font:10px 'DM Mono',monospace; letter-spacing:.04em; }
+.project-empty { grid-column:1/-1; display:grid; justify-items:start; gap:10px; padding:32px; border:1px dashed var(--line); border-radius:9px; color:var(--muted); }
+.project-empty strong { color:var(--text); font:600 19px 'Space Grotesk'; }
+.project-empty span { font-size:13px; }
+.project-empty button { padding:8px 12px; color:#07131b; border:0; border-radius:5px; background:var(--accent); cursor:pointer; font-weight:700; }
+.accent-switcher { display:flex; align-items:center; gap:7px; padding:5px; border:1px solid var(--line); border-radius:999px; background:rgba(7,13,22,.65); }
+.accent-switcher-label { padding:0 5px; color:#8092a9; font:9px 'DM Mono'; letter-spacing:.08em; }
+.accent-swatch { width:19px; height:19px; padding:0; border:2px solid transparent; border-radius:50%; cursor:pointer; background:var(--swatch); }
+.accent-swatch[aria-pressed="true"] { outline:2px solid var(--swatch); outline-offset:2px; }
+.accent-swatch:focus-visible { outline:2px solid var(--text); outline-offset:3px; }
+.site-shell { --accent:#62e6f2; --accent-soft:rgba(98,230,242,.14); }
+.site-shell[data-accent="violet"] { --accent:#b69aff; --accent-soft:rgba(182,154,255,.15); }
+.site-shell[data-accent="amber"] { --accent:#ffc477; --accent-soft:rgba(255,196,119,.15); }
+.site-shell[data-accent="mint"] { --accent:#78e6b1; --accent-soft:rgba(120,230,177,.15); }
+.site-shell[data-accent] .hero h1 span,
+.site-shell[data-accent] .section-heading h2 span,
+.site-shell[data-accent] .contact-section h2 span,
+.site-shell[data-accent] .hero-role,
+.site-shell[data-accent] .role-line,
+.site-shell[data-accent] .scroll-cue svg,
+.site-shell[data-accent] .project-symbol,
+.site-shell[data-accent] .project-learning strong,
+.site-shell[data-accent] .skill-card > svg,
+.site-shell[data-accent] .learning-card > span { color:var(--accent); }
+.site-shell[data-accent] .button-primary { background:var(--accent); }
+.site-shell[data-accent] .button-primary:hover { filter:brightness(1.08); }
+.site-shell[data-accent] .status-dot { background:var(--accent); box-shadow:0 0 12px var(--accent); }
+.site-shell[data-accent] .project-card:hover,
+.site-shell[data-accent] .other-project-card:hover,
+.site-shell[data-accent] .skill-card:hover,
+.site-shell[data-accent] .learning-card:hover { border-color:color-mix(in srgb,var(--accent) 48%,transparent); }
+@media(max-width:700px) {
+  .project-controls { align-items:stretch; }
+  .project-search { width:100%; }
+  .project-filter-list { width:100%; }
+  .filter-chip { flex:1; justify-content:center; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .filter-chip,.accent-swatch { transition:none!important; }
+}
