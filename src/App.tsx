@@ -1,17 +1,22 @@
-import { Code2, BriefcaseBusiness, Menu } from 'lucide-react'
+import { Code2, BriefcaseBusiness, Menu, X } from 'lucide-react'
 import { Link, Outlet } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './styles/global.css'
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [accent, setAccent] = useState('cyan')
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === 'Escape') setMenuOpen(false) }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [])
   const links = [{label:'Home',href:'/#home'},{label:'About',href:'/#about'},{label:'Journey',href:'/#journey'},{label:'Experience',href:'/#experience'},{label:'Projects',href:'/#projects'},{label:'More work',href:'/#more-projects'},{label:'GitHub',href:'/#github-activity'},{label:'Tech map',href:'/#tech-lab'},{label:'Skills',href:'/#skills'},{label:'Learning',href:'/#learning'},{label:'Terminal',href:'/#terminal'}]
   return (
     <div className="site-shell" data-accent={accent}>
       <header className="site-header">
         <Link className="brand" to="/" aria-label="Shaik Mahammad Hussain home"><span className="brand-mark">SH</span><span>SHAIK MAHAMMAD HUSSAIN<small>ENGINEERING · SOFTWARE · IDEAS</small></span></Link>
-        <button className="mobile-menu" aria-label="Toggle navigation" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={()=>setMenuOpen(!menuOpen)}><Menu size={21}/></button>
+        <button className="mobile-menu" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={()=>setMenuOpen(!menuOpen)}>{menuOpen ? <X size={21}/> : <Menu size={21}/>}</button>
         <nav id="primary-navigation" className={menuOpen?'nav-links nav-open':'nav-links'} aria-label="Main navigation">
           {links.map(link=><a key={link.label} href={link.href} onClick={()=>setMenuOpen(false)}>{link.label}</a>)}
           <div className="accent-switcher" role="group" aria-label="Choose portfolio accent color">
