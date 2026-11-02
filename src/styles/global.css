@@ -101,3 +101,88 @@ body { font-size: 16px; }
   .other-projects-grid { grid-template-columns: 1fr; }
   .other-project-card { min-height: 0; }
 }
+
+
+/* Main-branch polish: clearer rhythm, stronger focus states and restrained motion */
+:root { scroll-padding-top: 28px; }
+.site-header {
+  background: rgba(8, 13, 22, .88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.nav-links a:not(.nav-contact) { padding: 10px 0; position: relative; }
+.nav-links a:not(.nav-contact)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 3px;
+  height: 1px;
+  background: var(--cyan);
+  transition: right .22s ease;
+}
+.nav-links a:not(.nav-contact):hover::after,
+.nav-links a:not(.nav-contact):focus-visible::after { right: 0; }
+:where(a, button):focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+section[id] { scroll-margin-top: 28px; }
+.hero { gap: clamp(32px, 5vw, 76px); }
+.hero-description { max-width: 590px; }
+.section-heading { max-width: 760px; }
+.project-grid { align-items: stretch; gap: 18px; }
+.project-card {
+  border-radius: 10px;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, .12);
+  will-change: transform;
+}
+.project-card:hover {
+  box-shadow: 0 22px 48px rgba(0, 0, 0, .2), 0 0 0 1px rgba(98, 230, 242, .08);
+}
+.other-project-card, .skill-card, .learning-card, .approach-grid article, .experience-card {
+  border-radius: 9px;
+  transition: border-color .22s ease, transform .22s ease, background-color .22s ease;
+}
+.other-project-card:hover, .skill-card:hover, .learning-card:hover, .approach-grid article:hover {
+  border-color: rgba(98, 230, 242, .34);
+  transform: translateY(-3px);
+}
+.project-status { line-height: 1.5; }
+.project-card > p, .other-project-card p, .about-copy > p,
+.experience-main p, .journey-content p, .learning-card p {
+  text-wrap: pretty;
+}
+.project-card h3, .other-project-card h3, .skill-card h3 { text-wrap: balance; }
+.tag-list span { border-radius: 5px; }
+.button { min-height: 46px; }
+.button:focus-visible, .nav-contact:focus-visible { outline-offset: 3px; }
+.hero-socials a, .project-links a, .other-project-card a { min-height: 30px; }
+.contact-section { position: relative; }
+.contact-section::before {
+  content: '';
+  display: block;
+  width: min(100%, 760px);
+  height: 1px;
+  margin-bottom: 42px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+  opacity: .45;
+}
+@media (min-width: 1100px) {
+  .project-card { min-height: 430px; }
+  .other-project-card { min-height: 235px; }
+}
+@media (max-width: 850px) {
+  .hero { gap: 22px; }
+  .project-grid { gap: 14px; }
+}
+@media (max-width: 600px) {
+  .project-card, .other-project-card, .skill-card { border-radius: 8px; }
+  .hero-socials { flex-wrap: wrap; }
+  .contact-section::before { margin-bottom: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card, .other-project-card, .skill-card, .learning-card, .approach-grid article,
+  .button, .nav-links a:not(.nav-contact)::after { transition: none !important; }
+}
