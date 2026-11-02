@@ -112,7 +112,10 @@ export default function HomePage() {
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null)
   const [paletteQuery, setPaletteQuery] = useState('')
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [selectedTechnology, setSelectedTechnology] = useState('TypeScript')
   const projectFilters = ['All', 'Personal', 'Professional', 'Institutional']
+  const technologyExplorer = ['TypeScript', 'Python', 'C++', 'React', 'Node.js', 'PostgreSQL', 'PyTorch', 'Unity', 'MongoDB', 'Next.js']
+  const technologyProjects = projects.filter((project) => project.stack.some((technology) => technology.toLowerCase() === selectedTechnology.toLowerCase()))
   const visibleProjects = useMemo(() => projects.filter((project) => {
     const kind = project.name === 'Freight Broker CRM & Carrier Vetting'
       ? 'Professional'
@@ -209,18 +212,32 @@ export default function HomePage() {
     const command = terminalInput.trim().toLowerCase()
     if (!command) return
     const responses: Record<string, string> = {
-      help: 'Available: help · about · projects · skills · github · contact · copy · clear',
+      help: 'Commands: help, whoami, about, projects, skills, stack, journey, experience, date, time, github, linkedin, email, copy, open <project>, clear',
       about: 'Arc is a multidisciplinary developer exploring web, AI, games and systems engineering.',
       projects: 'Featured work: PM-SETU, ArcEngine, MiraV2, ArcTester, Freight Broker CRM and Polling Officer Allocation.',
       skills: 'C/C++ · Python · TypeScript · React · Node.js · PostgreSQL · PyTorch · Unity · Linux',
       github: 'Opening GitHub profile…',
       contact: 'Email: shaikmahammadhussain9121@gmail.com',
       copy: 'Copying contact email to clipboard…',
+      whoami: 'arc — multidisciplinary developer | Computer Engineering student',
+      stack: 'Web: React, Next.js, Node.js | Data: PostgreSQL, MongoDB | AI: PyTorch, scikit-learn | Games: Unity, Godot, C++',
+      journey: '2024: Diploma in Computer Engineering · 2025: learning by building · 2026: NIC industrial training and professional development.',
+      experience: 'NIC industrial training · Ricoz Innovation — Full-stack development',
+      email: 'shaikmahammadhussain9121@gmail.com',
+      date: new Date().toLocaleDateString(undefined, { dateStyle: 'full' }),
+      time: new Date().toLocaleTimeString(),
     }
     if (command === 'clear') setTerminalOutput([])
     else {
       setTerminalOutput((lines) => [...lines, 'arc@portfolio:~$ ' + command, responses[command] ?? ('Command not found: ' + command + '. Type help.')])
       if (command === 'github') window.open('https://github.com/SMDHussain912', '_blank', 'noopener,noreferrer')
+      if (command === 'linkedin') window.open('https://www.linkedin.com/in/shaik-mahammad-hussain-996088430/', '_blank', 'noopener,noreferrer')
+      if (command.startsWith('open ')) {
+        const query = command.slice(5).trim()
+        const match = projects.find((project) => project.name.toLowerCase().includes(query))
+        if (match) setSelectedProject(match)
+        else setTerminalOutput((lines) => [...lines, 'No matching project. Try: open arcengine'])
+      }
       if (command === 'copy') navigator.clipboard?.writeText('shaikmahammadhussain9121@gmail.com').then(() => setTerminalOutput((lines) => [...lines, 'Email copied to clipboard.'])).catch(() => setTerminalOutput((lines) => [...lines, 'Clipboard unavailable. Email: shaikmahammadhussain9121@gmail.com']))
     }
     setTerminalInput('')
@@ -233,6 +250,7 @@ export default function HomePage() {
     { label: 'Experience', detail: 'Industrial training', href: '#experience' },
     { label: 'Projects', detail: 'Selected engineering work', href: '#projects' },
     { label: 'GitHub activity', detail: 'Live public profile data', href: '#github-activity' },
+    { label: 'Technology explorer', detail: 'Find projects by technology', href: '#tech-lab' },
     { label: 'Skills', detail: 'Technical toolkit', href: '#skills' },
     { label: 'Terminal', detail: 'Explore with commands', href: '#terminal' },
     { label: 'Contact', detail: 'Start a conversation', href: '#contact' },
@@ -627,9 +645,27 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="tech-lab-section section-shell" id="tech-lab">
+        <div className="section-heading compact-heading">
+          <span className="section-index">09 / INTERACTIVE TECHNOLOGY MAP</span>
+          <h2>Find the tech behind <span>the work.</span></h2>
+          <p>Choose a technology to discover the projects where it appears. This map is generated from the project stacks listed above.</p>
+        </div>
+        <div className="tech-lab">
+          <div className="tech-orbit" aria-hidden="true"><span/><span/><span/></div>
+          <div className="tech-picker" role="group" aria-label="Filter projects by technology">
+            {technologyExplorer.map((technology) => <button type="button" key={technology} className={selectedTechnology === technology ? 'tech-chip is-active' : 'tech-chip'} aria-pressed={selectedTechnology === technology} onClick={() => setSelectedTechnology(technology)}>{technology}<span>{projects.filter((project) => project.stack.some((item) => item.toLowerCase() === technology.toLowerCase())).length}</span></button>)}
+          </div>
+          <div className="tech-results" aria-live="polite">
+            <div className="tech-results-heading"><span>SELECTED TECHNOLOGY</span><strong>{selectedTechnology}</strong><small>{technologyProjects.length} matching {technologyProjects.length === 1 ? 'project' : 'projects'}</small></div>
+            {technologyProjects.length > 0 ? technologyProjects.map((project) => <button className="tech-project" type="button" key={project.name} onClick={() => setSelectedProject(project)}><span><small>{project.category}</small><strong>{project.name}</strong></span><ArrowUpRight size={17}/></button>) : <p>No featured project currently lists this technology.</p>}
+          </div>
+        </div>
+      </section>
+
       <section className="learning-section section-shell" id="learning">
         <div className="section-heading compact-heading">
-          <span className="section-index">09 / CURRENT LEARNING ROADMAP</span>
+          <span className="section-index">10 / CURRENT LEARNING ROADMAP</span>
           <h2>What I'm <span>learning next.</span></h2>
           <p>These are active learning directions and deeper areas I want to develop—not technologies I'm claiming to have mastered.</p>
         </div>
@@ -641,9 +677,9 @@ export default function HomePage() {
 
       <section className="terminal-section section-shell" id="terminal">
         <div className="section-heading compact-heading">
-          <span className="section-index">10 / INTERACTIVE EXPERIMENT</span>
+          <span className="section-index">11 / INTERACTIVE EXPERIMENT</span>
           <h2>Curious? Open the <span>terminal.</span></h2>
-          <p>A tiny command-line-style tour. Try <code>help</code>, <code>projects</code>, or <code>skills</code>.</p>
+          <p>A tiny command-line-style tour. Try <code>help</code>, <code>stack</code>, <code>date</code>, or <code>open arcengine</code>.</p>
         </div>
         <div className="portfolio-terminal">
           <div className="terminal-topbar"><span><i/><i/><i/></span><strong>arc@portfolio — interactive shell</strong><span>LOCAL SESSION</span></div>
@@ -659,7 +695,7 @@ export default function HomePage() {
       </section>
 
       <section className="contact-section section-shell" id="contact">
-        <span className="section-index">11 / GET IN TOUCH</span>
+        <span className="section-index">12 / GET IN TOUCH</span>
         <h2>Have an idea?<br/><span>Let's build something.</span></h2>
         <p>I'm interested in meaningful projects, learning opportunities and conversations about engineering.</p>
         <a className="button button-primary" href="mailto:shaikmahammadhussain9121@gmail.com">Say hello <Mail size={16}/></a>
