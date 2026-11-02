@@ -229,16 +229,24 @@ export default function HomePage() {
     }
     if (command === 'clear') setTerminalOutput([])
     else {
-      setTerminalOutput((lines) => [...lines, 'arc@portfolio:~$ ' + command, responses[command] ?? ('Command not found: ' + command + '. Type help.')])
+      const projectQuery = command.startsWith('open ') ? command.slice(5).trim() : ''
+      const projectMatch = projectQuery ? projects.find((project) => project.name.toLowerCase().includes(projectQuery)) : undefined
+      const output = command.startsWith('open ')
+        ? (projectMatch ? 'Opening ' + projectMatch.name + ' case study…' : 'No project matches that name. Try: open arcengine')
+        : (responses[command] ?? ('Command not found: ' + command + '. Type help.'))
+      setTerminalOutput((lines) => [...lines, 'arc@portfolio:~$ ' + command, output])
       if (command === 'github') window.open('https://github.com/SMDHussain912', '_blank', 'noopener,noreferrer')
       if (command === 'linkedin') window.open('https://www.linkedin.com/in/shaik-mahammad-hussain-996088430/', '_blank', 'noopener,noreferrer')
-      if (command.startsWith('open ')) {
-        const query = command.slice(5).trim()
-        const match = projects.find((project) => project.name.toLowerCase().includes(query))
-        if (match) setSelectedProject(match)
-        else setTerminalOutput((lines) => [...lines, 'No matching project. Try: open arcengine'])
+      if (projectMatch) setSelectedProject(projectMatch)
+      if (command === 'copy') {
+        if (navigator.clipboard?.writeText) {
+          navigator.clipboard.writeText('shaikmahammadhussain9121@gmail.com')
+            .then(() => setTerminalOutput((lines) => [...lines, 'Email copied to clipboard.']))
+            .catch(() => setTerminalOutput((lines) => [...lines, 'Clipboard unavailable. Email: shaikmahammadhussain9121@gmail.com']))
+        } else {
+          setTerminalOutput((lines) => [...lines, 'Clipboard unavailable. Email: shaikmahammadhussain9121@gmail.com'])
+        }
       }
-      if (command === 'copy') navigator.clipboard?.writeText('shaikmahammadhussain9121@gmail.com').then(() => setTerminalOutput((lines) => [...lines, 'Email copied to clipboard.'])).catch(() => setTerminalOutput((lines) => [...lines, 'Clipboard unavailable. Email: shaikmahammadhussain9121@gmail.com']))
     }
     setTerminalInput('')
   }
