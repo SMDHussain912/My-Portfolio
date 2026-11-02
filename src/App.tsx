@@ -16,10 +16,10 @@ export default function App() {
           {links.map(link=><a key={link.label} href={link.href} onClick={()=>setMenuOpen(false)}>{link.label}</a>)}
           <div className="accent-switcher" role="group" aria-label="Choose portfolio accent color">
             <span className="accent-switcher-label">COLOR</span>
-            <button className="accent-swatch" style={{'--swatch':'#62e6f2'} as React.CSSProperties} type="button" aria-label="Cyan accent" aria-pressed={accent==='cyan'} onClick={()=>setAccent('cyan')} />
-            <button className="accent-swatch" style={{'--swatch':'#b69aff'} as React.CSSProperties} type="button" aria-label="Violet accent" aria-pressed={accent==='violet'} onClick={()=>setAccent('violet')} />
-            <button className="accent-swatch" style={{'--swatch':'#ffc477'} as React.CSSProperties} type="button" aria-label="Amber accent" aria-pressed={accent==='amber'} onClick={()=>setAccent('amber')} />
-            <button className="accent-swatch" style={{'--swatch':'#78e6b1'} as React.CSSProperties} type="button" aria-label="Mint accent" aria-pressed={accent==='mint'} onClick={()=>setAccent('mint')} />
+            <button className="accent-swatch swatch-cyan" type="button" aria-label="Cyan accent" aria-pressed={accent==='cyan'} onClick={()=>setAccent('cyan')} />
+            <button className="accent-swatch swatch-violet" type="button" aria-label="Violet accent" aria-pressed={accent==='violet'} onClick={()=>setAccent('violet')} />
+            <button className="accent-swatch swatch-amber" type="button" aria-label="Amber accent" aria-pressed={accent==='amber'} onClick={()=>setAccent('amber')} />
+            <button className="accent-swatch swatch-mint" type="button" aria-label="Mint accent" aria-pressed={accent==='mint'} onClick={()=>setAccent('mint')} />
           </div>
           <a className="nav-contact" href="mailto:shaikmahammadhussain9121@gmail.com">Let's talk <span>↗</span></a>
         </nav>
