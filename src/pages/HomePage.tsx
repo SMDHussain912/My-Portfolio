@@ -109,6 +109,7 @@ export default function HomePage() {
   const [terminalInput, setTerminalInput] = useState('')
   const [terminalOutput, setTerminalOutput] = useState<string[]>(['Welcome to arc://portfolio', 'Type help to see available commands.'])
   const [paletteOpen, setPaletteOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null)
   const [paletteQuery, setPaletteQuery] = useState('')
   const projectFilters = ['All', 'Personal', 'Professional', 'Institutional']
   const visibleProjects = useMemo(() => projects.filter((project) => {
@@ -162,7 +163,7 @@ export default function HomePage() {
         setPaletteOpen((open) => !open)
         setPaletteQuery('')
       }
-      if (event.key === 'Escape') setPaletteOpen(false)
+      if (event.key === 'Escape') { setPaletteOpen(false); setSelectedProject(null) }
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
@@ -497,7 +498,10 @@ export default function HomePage() {
               <p>{project.description}</p>
               <div className="project-learning"><strong>What this project explores</strong><span>{project.name === 'PM-SETU' ? 'Institutional workflows, backend architecture, relational data modelling and API integration.' : project.name === 'ArcEngine' ? 'Rendering architecture, engine subsystems, physics integration, scripting and editor foundations.' : project.name === 'MiraV2' ? 'Local speech interfaces, modular C++ components, intent processing and privacy-conscious design.' : project.name === 'ArcTester' ? 'Offline-first exam delivery, question management, assessment logic and performance analytics.' : project.name === 'Freight Broker CRM & Carrier Vetting' ? 'Carrier onboarding, vetting workflows, operational data and cross-platform product development.' : 'Personnel data management, multi-stage allocation workflows, training, reporting and auditability.'}</span></div>
               <div className="tag-list">{project.stack.map(item => <span key={item}>{item}</span>)}</div>
-              <div className="project-links">{project.links.map(link => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} <ArrowUpRight size={14}/></a>)}</div>
+              <div className="project-card-actions">
+                <button className="case-study-trigger" type="button" onClick={() => setSelectedProject(project)}>Explore case study <ArrowUpRight size={14}/></button>
+                <div className="project-links">{project.links.map(link => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} <ArrowUpRight size={14}/></a>)}</div>
+              </div>
             </article>
           ))}
           {visibleProjects.length === 0 && (
@@ -622,6 +626,18 @@ export default function HomePage() {
         <p>I'm interested in meaningful projects, learning opportunities and conversations about engineering.</p>
         <a className="button button-primary" href="mailto:shaikmahammadhussain9121@gmail.com">Say hello <Mail size={16}/></a>
       </section>
+      {selectedProject && <div className="case-study-overlay" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setSelectedProject(null) }}>
+        <article className="case-study-dialog" role="dialog" aria-modal="true" aria-labelledby="case-study-title">
+          <button className="case-study-close" type="button" onClick={() => setSelectedProject(null)} aria-label="Close case study"><X size={20}/></button>
+          <span className="section-index">{selectedProject.number} / PROJECT CASE STUDY</span>
+          <p className="case-study-category">{selectedProject.category}</p>
+          <h2 id="case-study-title">{selectedProject.name}</h2>
+          <div className="case-study-status">{selectedProject.status}</div>
+          <section><h3>Overview</h3><p>{selectedProject.description}</p></section>
+          <section><h3>Technology and tools</h3><div className="tag-list">{selectedProject.stack.map((technology) => <span key={technology}>{technology}</span>)}</div></section>
+          <section><h3>Explore the source</h3><div className="case-study-links">{selectedProject.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} <ArrowUpRight size={15}/></a>)}</div></section>
+        </article>
+      </div>}
       {paletteOpen && <div className="command-overlay" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setPaletteOpen(false) }}>
         <div className="command-dialog" role="dialog" aria-modal="true" aria-label="Portfolio command palette">
           <div className="command-search"><Search size={18}/><input autoFocus value={paletteQuery} onChange={(event) => setPaletteQuery(event.target.value)} placeholder="Search sections…"/><kbd>ESC</kbd><button type="button" onClick={() => setPaletteOpen(false)} aria-label="Close command palette"><X size={17}/></button></div>
