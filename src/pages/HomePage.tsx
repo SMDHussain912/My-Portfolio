@@ -217,7 +217,6 @@ export default function HomePage() {
         const makeScrollCard = (
           card: HTMLElement,
           fromX: number,
-          index: number,
           end: string,
           extra: gsap.TweenVars = {},
         ) => {
@@ -247,25 +246,12 @@ export default function HomePage() {
           })
         }
 
-        // Featured projects: alternating horizontal entrances, responsive travel.
-        getCards('.project-card').forEach((card, index) => {
-          const fromLeft = index % 2 === 0
-          makeScrollCard(
-            card,
-            fromLeft ? -horizontalTravel : horizontalTravel,
-            index,
-            isMobile ? 'top 62%' : 'top 54%',
-            { rotateY: isMobile ? 0 : (fromLeft ? -5 : 5) },
-          )
-        })
-
         // Skills: left/right sweep. scrub:true removes the lingering animation bug.
         getCards('.skill-card').forEach((card, index) => {
           const fromLeft = index % 2 === 0
           makeScrollCard(
             card,
             fromLeft ? -horizontalTravel : horizontalTravel,
-            index,
             isMobile ? 'top 62%' : 'top 54%',
             { rotateY: isMobile ? 0 : (fromLeft ? -4 : 4) },
           )
@@ -277,7 +263,6 @@ export default function HomePage() {
           makeScrollCard(
             card,
             fromRight ? horizontalTravel : -horizontalTravel,
-            index,
             isMobile ? 'top 62%' : 'top 54%',
             { rotate: isMobile ? 0 : (fromRight ? 2 : -2) },
           )
@@ -289,7 +274,6 @@ export default function HomePage() {
           makeScrollCard(
             card,
             fromLeft ? -horizontalTravel : horizontalTravel,
-            index,
             isMobile ? 'top 64%' : 'top 56%',
             { rotateY: isMobile ? 0 : (fromLeft ? -3 : 3) },
           )
