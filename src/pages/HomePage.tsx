@@ -44,7 +44,7 @@ const projects = [
 
 const skillGroups = [
   { icon: Code2, title: 'Programming languages', items: 'C · C++ · Python · Java · JavaScript · TypeScript · C# · PHP · Lua · Kotlin' },
-  { icon: Globe2, title: 'Frontend & application development', items: 'HTML · CSS · React · Vite · React Router · Next.js · Flutter (learning)' },
+  { icon: Globe2, title: 'Frontend & application development', items: 'HTML · CSS · React · Vite · React Router' },
   { icon: Terminal, title: 'Backend & databases', items: 'Node.js · Express.js · REST APIs · JWT · Socket.IO · MongoDB · PostgreSQL · MySQL · SQLite · SQL' },
   { icon: Cpu, title: 'Data science & machine learning', items: 'NumPy · Pandas · Matplotlib · scikit-learn · PyTorch · model training fundamentals' },
   { icon: Gamepad2, title: 'Game & graphics development', items: 'Unity · Godot · Blender · OpenGL · SDL2 · game-engine architecture' },
@@ -135,7 +135,7 @@ export default function HomePage() {
 
       <section className="experience-section section-shell" id="experience">
         <div className="section-heading compact-heading">
-          <span className="section-index">02 / EXPERIENCE</span>
+          <span className="section-index">03 / EXPERIENCE</span>
           <h2>Learning through <span>real work.</span></h2>
         </div>
         <article className="experience-card">
@@ -157,7 +157,7 @@ export default function HomePage() {
 
       <section className="projects-section section-shell" id="projects">
         <div className="section-heading">
-          <span className="section-index">03 / SELECTED WORK</span>
+          <span className="section-index">04 / SELECTED WORK</span>
           <h2>Ideas turned into <span>experiments.</span></h2>
           <p>These projects represent different sides of my engineering interests—from delivering institutional software to exploring how engines and local AI systems are built. I keep project status transparent: ongoing work is not presented as finished software.</p>
         </div>
