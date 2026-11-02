@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import type { FormEvent } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles, GraduationCap, Terminal, Cpu, Gamepad2, Globe2, Github, Search, X, Activity, Command, ChevronRight } from 'lucide-react'
@@ -167,7 +168,7 @@ export default function HomePage() {
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [])
 
-  const runTerminalCommand = (event: React.FormEvent<HTMLFormElement>) => {
+  const runTerminalCommand = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const command = terminalInput.trim().toLowerCase()
     if (!command) return
@@ -560,7 +561,7 @@ export default function HomePage() {
 
       <section className="approach-section section-shell">
         <div className="section-heading compact-heading">
-          <span className="section-index">06 / HOW I WORK</span>
+          <span className="section-index">07 / HOW I WORK</span>
           <h2>Curiosity with an <span>engineering mindset.</span></h2>
         </div>
         <div className="approach-grid">
@@ -572,7 +573,7 @@ export default function HomePage() {
 
       <section className="skills-section section-shell" id="skills">
         <div className="section-heading compact-heading">
-          <span className="section-index">07 / TECHNICAL TOOLKIT</span>
+          <span className="section-index">08 / TECHNICAL TOOLKIT</span>
           <h2>Technologies I've <span>worked with.</span></h2>
           <p>A snapshot of languages, frameworks, libraries and tools I've studied or used across coursework and projects. This is a working toolkit—not a claim of expert-level proficiency in every item.</p>
         </div>
@@ -586,7 +587,7 @@ export default function HomePage() {
 
       <section className="learning-section section-shell" id="learning">
         <div className="section-heading compact-heading">
-          <span className="section-index">08 / CURRENT LEARNING ROADMAP</span>
+          <span className="section-index">09 / CURRENT LEARNING ROADMAP</span>
           <h2>What I'm <span>learning next.</span></h2>
           <p>These are active learning directions and deeper areas I want to develop—not technologies I'm claiming to have mastered.</p>
         </div>
@@ -598,7 +599,7 @@ export default function HomePage() {
 
       <section className="terminal-section section-shell" id="terminal">
         <div className="section-heading compact-heading">
-          <span className="section-index">09 / INTERACTIVE EXPERIMENT</span>
+          <span className="section-index">10 / INTERACTIVE EXPERIMENT</span>
           <h2>Curious? Open the <span>terminal.</span></h2>
           <p>A tiny command-line-style tour. Try <code>help</code>, <code>projects</code>, or <code>skills</code>.</p>
         </div>
@@ -616,7 +617,7 @@ export default function HomePage() {
       </section>
 
       <section className="contact-section section-shell" id="contact">
-        <span className="section-index">09 / GET IN TOUCH</span>
+        <span className="section-index">11 / GET IN TOUCH</span>
         <h2>Have an idea?<br/><span>Let's build something.</span></h2>
         <p>I'm interested in meaningful projects, learning opportunities and conversations about engineering.</p>
         <a className="button button-primary" href="mailto:shaikmahammadhussain9121@gmail.com">Say hello <Mail size={16}/></a>
