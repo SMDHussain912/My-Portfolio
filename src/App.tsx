@@ -6,7 +6,7 @@ import './styles/global.css'
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [accent, setAccent] = useState('cyan')
-  const links = [{label:'Home',href:'/#home'},{label:'About',href:'/#about'},{label:'Journey',href:'/#journey'},{label:'Experience',href:'/#experience'},{label:'Projects',href:'/#projects'},{label:'More work',href:'/#more-projects'},{label:'Skills',href:'/#skills'},{label:'Learning',href:'/#learning'}]
+  const links = [{label:'Home',href:'/#home'},{label:'About',href:'/#about'},{label:'Journey',href:'/#journey'},{label:'Experience',href:'/#experience'},{label:'Projects',href:'/#projects'},{label:'More work',href:'/#more-projects'},{label:'GitHub',href:'/#github-activity'},{label:'Skills',href:'/#skills'},{label:'Learning',href:'/#learning'},{label:'Terminal',href:'/#terminal'}]
   return (
     <div className="site-shell" data-accent={accent}>
       <header className="site-header">
@@ -21,7 +21,7 @@ export default function App() {
             <button className="accent-swatch swatch-amber" type="button" aria-label="Amber accent" aria-pressed={accent==='amber'} onClick={()=>setAccent('amber')} />
             <button className="accent-swatch swatch-mint" type="button" aria-label="Mint accent" aria-pressed={accent==='mint'} onClick={()=>setAccent('mint')} />
           </div>
-          <a className="nav-contact" href="mailto:shaikmahammadhussain9121@gmail.com">Let's talk <span>↗</span></a>
+          <button className="palette-shortcut" type="button" onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", ctrlKey: true }))} aria-label="Open quick navigation"><span>⌘</span> K</button><a className="nav-contact" href="mailto:shaikmahammadhussain9121@gmail.com">Let's talk <span>↗</span></a>
         </nav>
       </header>
       <Outlet />
