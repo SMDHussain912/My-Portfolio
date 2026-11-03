@@ -29,7 +29,7 @@ const projects = [
   {
     number: '02', name: 'ArcEngine', category: 'C++ Game Engine',
     description: 'An independent 2D/3D game-engine project exploring rendering, scene and entity systems, physics integration, scripting and editor architecture. The current codebase is an evolving prototype.',
-    stack: ['C++', 'OpenGL', 'Box2D', 'CMake', 'Lua'],
+    stack: ['C++', 'OpenGL', 'CMake'],
     status: 'In development',
     links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/ArcEngine' }],
   },
@@ -71,7 +71,7 @@ const projects = [
 ]
 
 const otherProjects = [
-  { name: 'UniSphere', category: 'Student & Examination Platform', description: 'A full-stack student platform covering exam enrollment, hall tickets, online tests, answer evaluation, results, jobs, applications and role-based administration.', href: 'https://github.com/SMDHussain912/UniSphere', stack: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'WebSocket'], status: 'Active development' },
+  { name: 'UniSphere', category: 'Student & Examination Platform', description: 'A full-stack student platform covering exam enrollment, hall tickets, online tests, answer evaluation, results, jobs, applications and role-based administration.', href: 'https://github.com/SMDHussain912/UniSphere', stack: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'Mongoose'], status: 'Active development' },
   { name: 'UniChat', category: 'Communication Application', description: 'A communication application repository. Its current source stack and feature completeness still need repository-level verification.', href: 'https://github.com/SMDHussain912/UniChat', stack: [], status: 'Repository details need verification' },
   { name: 'RobotSimulator', category: 'C++ / Robotics Simulation', description: 'A C++17 robot simulator built with a custom project structure, including engine utilities, grid and node logic, robot behavior, A* pathfinding and text-to-speech components.', href: 'https://github.com/SMDHussain912/RobotSimulator', stack: ['C++', 'CMake'], status: 'Independent project' },
   { name: 'Career Navigator', category: 'AI-Powered Learning Platform', description: 'A Node.js and Express career recommendation and learning platform using EJS templates, MongoDB/Mongoose and authentication-related backend components.', href: 'https://github.com/SMDHussain912/Web-server', stack: ['JavaScript', 'Node.js', 'Express', 'EJS', 'MongoDB', 'Mongoose'], status: 'Independent project' },
@@ -131,7 +131,7 @@ export default function HomePage() {
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [selectedTechnology, setSelectedTechnology] = useState('TypeScript')
   const projectFilters = ['All', 'Personal', 'Professional', 'Institutional']
-  const technologyExplorer = Array.from(new Set(allProjects.flatMap((project) => project.stack))).sort((a, b) => a.localeCompare(b))
+  const technologyExplorer = Array.from(new Set(['C', 'C++', 'C#', 'Java', 'JavaScript', 'TypeScript', 'Python', 'Kotlin', 'PHP', 'Lua', 'HTML', 'CSS', ...allProjects.flatMap((project) => project.stack)])).sort((a, b) => a.localeCompare(b))
   const technologyProjects = allProjects.filter((project) => project.stack.some((technology) => technology.toLowerCase() === selectedTechnology.toLowerCase()))
   const visibleProjects = useMemo(() => projects.filter((project) => {
     const kind = project.name === 'Freight Broker CRM & Carrier Vetting'
