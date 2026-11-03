@@ -19,7 +19,7 @@ const projects = [
   {
     number: '01', name: 'PM-SETU', category: 'Government / Institutional Platform',
     description: 'Contributed during NIC industrial training to an institutional platform supporting ITI upgradation workflows. The public frontend repository is a React + Vite project; its README is still the starter template, so detailed implementation claims and backend technologies are not independently verifiable from the public repositories.',
-    stack: ['React', 'JavaScript', 'Vite'],
+    stack: ['React', 'Vite'],
     status: 'NIC contribution · public implementation needs documentation',
     links: [
       { label: 'Frontend repository', href: 'https://github.com/SMDHussain912/PM-SETU-Frontend' },
@@ -28,7 +28,7 @@ const projects = [
   {
     number: '02', name: 'ArcEngine', category: 'C++ Game Engine',
     description: 'An independent 2D/3D game-engine project exploring rendering, scene and entity systems, physics integration, scripting and editor architecture. The current codebase is an evolving prototype.',
-    stack: ['C++17', 'OpenGL', 'Box2D', 'CMake', 'Lua'],
+    stack: ['C++', 'OpenGL', 'Box2D', 'CMake', 'Lua'],
     status: 'In development',
     links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/ArcEngine' }],
   },
@@ -69,7 +69,7 @@ const projects = [
 const otherProjects = [
   { name: 'UniSphere', category: 'Student & Examination Platform', description: 'A full-stack student platform covering exam enrollment, hall tickets, online tests, answer evaluation, results, jobs, applications and role-based administration.', href: 'https://github.com/SMDHussain912/UniSphere', stack: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'WebSocket'], status: 'Active development' },
   { name: 'UniChat', category: 'Communication Application', description: 'A communication application repository. Its current source stack and feature completeness still need repository-level verification.', href: 'https://github.com/SMDHussain912/UniChat', stack: [], status: 'Repository details need verification' },
-  { name: 'RobotSimulator', category: 'C++ / Robotics Simulation', description: 'A C++17 robot simulator built with a custom project structure, including engine utilities, grid and node logic, robot behavior, A* pathfinding and text-to-speech components.', href: 'https://github.com/SMDHussain912/RobotSimulator', stack: ['C++17', 'CMake'], status: 'Independent project' },
+  { name: 'RobotSimulator', category: 'C++ / Robotics Simulation', description: 'A C++17 robot simulator built with a custom project structure, including engine utilities, grid and node logic, robot behavior, A* pathfinding and text-to-speech components.', href: 'https://github.com/SMDHussain912/RobotSimulator', stack: ['C++', 'CMake'], status: 'Independent project' },
   { name: 'Career Navigator', category: 'AI-Powered Learning Platform', description: 'A Node.js and Express career recommendation and learning platform using EJS templates, MongoDB/Mongoose and authentication-related backend components.', href: 'https://github.com/SMDHussain912/Web-server', stack: ['JavaScript', 'Node.js', 'Express', 'EJS', 'MongoDB', 'Mongoose'], status: 'Independent project' },
   { name: 'UniTech-Site', category: 'Organization Website', description: 'A responsive one-page website for UniTech Organization, built with standard browser technologies and custom interactions without a build process or external dependencies.', href: 'https://github.com/SMDHussain912/UniTech-Site', stack: ['HTML', 'CSS', 'JavaScript'], status: 'Website project' },
   { name: 'THE-SYSTEM', category: 'Java Application', description: 'A Solo Leveling-inspired progression and level-system project. Its current implementation stack needs source-level verification before technologies are listed.', href: 'https://github.com/SMDHussain912/THE-SYSTEM', stack: [], status: 'Repository details need verification' },
