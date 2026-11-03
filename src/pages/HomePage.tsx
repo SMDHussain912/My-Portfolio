@@ -18,11 +18,12 @@ const journey = [
 const projects = [
   {
     number: '01', name: 'PM-SETU', category: 'Government / Institutional Platform',
-    description: 'Contributed during NIC industrial training to an institutional platform supporting ITI upgradation workflows. The public frontend repository is a React + Vite project; its README is still the starter template, so detailed implementation claims and backend technologies are not independently verifiable from the public repositories.',
-    stack: ['React', 'Vite'],
-    status: 'NIC contribution · public implementation needs documentation',
+    description: 'Contributed during NIC industrial training to an institutional platform supporting ITI upgradation workflows. The public repositories contain a React + Vite frontend and a TypeScript + Express backend using Prisma and PostgreSQL.',
+    stack: ['JavaScript', 'TypeScript', 'React', 'Vite', 'Node.js', 'Express', 'Prisma', 'PostgreSQL'],
+    status: 'NIC industrial training contribution',
     links: [
-      { label: 'Frontend repository', href: 'https://github.com/SMDHussain912/PM-SETU-Frontend' },
+      { label: 'Frontend', href: 'https://github.com/SMDHussain912/PM-SETU-Frontend' },
+      { label: 'Backend', href: 'https://github.com/SMDHussain912/PM-SETU-Backend' },
     ],
   },
   {
@@ -59,10 +60,13 @@ const projects = [
   },
   {
     number: '06', name: 'Polling Officer Allocation System', category: 'Government Workflow / Allocation Software',
-    description: 'A polling-personnel allocation project with documented requirements and architecture for personnel imports, three-stage randomization, training, reporting and audit. The linked public backend README explicitly describes a documentation-and-placeholder structure with no source implementation yet.',
-    stack: [],
-    status: 'Architecture and documentation · public backend implementation pending',
-    links: [{ label: 'Public backend repository', href: 'https://github.com/SMDHussain912/Polling-Officer-Allocation-Software-Backend' }],
+    description: 'A polling personnel allocation and administration platform with a React dashboard and Express backend. The repositories include officer and booth management, Excel uploads, allocation workflows, notifications, ID-card design and reporting modules.',
+    stack: ['JavaScript', 'React', 'Vite', 'Node.js', 'Express', 'MongoDB', 'Mongoose'],
+    status: 'Implemented project · frontend and backend repositories',
+    links: [
+      { label: 'Frontend', href: 'https://github.com/SMDHussain912/Polling-Officer-Allocation-Frontend' },
+      { label: 'Backend', href: 'https://github.com/SMDHussain912/Polling-Officer-Allocation-Backend' },
+    ],
   },
 ]
 
@@ -74,6 +78,7 @@ const otherProjects = [
   { name: 'UniTech-Site', category: 'Organization Website', description: 'A responsive one-page website for UniTech Organization, built with standard browser technologies and custom interactions without a build process or external dependencies.', href: 'https://github.com/SMDHussain912/UniTech-Site', stack: ['HTML', 'CSS', 'JavaScript'], status: 'Website project' },
   { name: 'THE-SYSTEM', category: 'Java Application', description: 'A Solo Leveling-inspired progression and level-system project. Its current implementation stack needs source-level verification before technologies are listed.', href: 'https://github.com/SMDHussain912/THE-SYSTEM', stack: [], status: 'Repository details need verification' },
   { name: 'EGCOR', category: 'Institutional Recruitment Website', description: 'An East Godavari Collector Office recruitment website project using an Express server, EJS templates and Mongoose-backed data models.', href: 'https://github.com/SMDHussain912/EGCOR', stack: ['JavaScript', 'Node.js', 'Express', 'EJS', 'MongoDB', 'Mongoose'], status: 'Institutional project' },
+  { name: 'E-OFFICE', category: 'Office Workflow Web Application', description: 'An E-OFFICE web application repository with an Express server, EJS views and dependencies for authentication, request validation, file handling and application security.', href: 'https://github.com/SMDHussain912/E-OFFICE', stack: ['JavaScript', 'Node.js', 'Express', 'EJS'], status: 'Repository implementation' },
   { name: 'Arc-Dev-Lab', category: 'Programming Laboratory', description: 'A learning repository for programming experiments, prototypes and small projects across multiple development areas. Individual languages should be attributed to specific experiments, not to the whole repository.', href: 'https://github.com/SMDHussain912/Arc-Dev-Lab', stack: [], status: 'Ongoing learning repository' },
 ]
 
