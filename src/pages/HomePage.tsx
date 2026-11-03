@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles, GraduationCap, Terminal, Cpu, Gamepad2, Globe2, Search, X, Activity, Command, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Code2, BriefcaseBusiness, Mail, Sparkles, GraduationCap, Terminal, Cpu, Gamepad2, Globe2, Search, X, Activity, Command, ChevronRight } from 'lucide-react'
 
  gsap.registerPlugin(ScrollTrigger)
 
@@ -110,7 +110,6 @@ export default function HomePage() {
   const [terminalOutput, setTerminalOutput] = useState<string[]>(['Welcome to arc://portfolio', 'Type help to see available commands.'])
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null)
-  const [expandedProject, setExpandedProject] = useState<string | null>(null)
   const [paletteQuery, setPaletteQuery] = useState('')
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [selectedTechnology, setSelectedTechnology] = useState('TypeScript')
@@ -554,40 +553,22 @@ export default function HomePage() {
           Showing {visibleProjects.length} of {projects.length} featured projects
         </p>
         <div className="project-grid">
-          {visibleProjects.map(project => {
-            const isExpanded = expandedProject === project.number
-            const detailsId = `project-details-${project.number}`
-            return (
-              <article className={isExpanded ? 'project-card is-expanded' : 'project-card'} key={project.number}>
-                <div className="project-card-top"><span>{project.number} / PROJECT</span><span className="project-status">{project.status}</span></div>
-                <div className="project-card-heading">
-                  <div className="project-symbol"><Terminal size={21}/></div>
-                  <div><span className="project-category">{project.category}</span><h3>{project.name}</h3></div>
-                </div>
-                <button
-                  className="project-expand-trigger"
-                  type="button"
-                  aria-expanded={isExpanded}
-                  aria-controls={detailsId}
-                  onClick={() => setExpandedProject(isExpanded ? null : project.number)}
-                >
-                  {isExpanded ? 'Hide project details' : 'View project details'}
-                  {isExpanded ? <ChevronUp size={16}/> : <ChevronDown size={16}/>}
+          {visibleProjects.map(project => (
+            <article className="project-card" key={project.number}>
+              <div className="project-card-top"><span>{project.number} / PROJECT</span><span className="project-status">{project.status}</span></div>
+              <div className="project-card-heading">
+                <div className="project-symbol"><Terminal size={21}/></div>
+                <div><span className="project-category">{project.category}</span><h3>{project.name}</h3></div>
+              </div>
+              <p className="project-card-summary">{project.description}</p>
+              <div className="project-card-footer">
+                <button className="case-study-trigger" type="button" onClick={() => setSelectedProject(project)}>
+                  Open full case study <ArrowUpRight size={15}/>
                 </button>
-                {isExpanded && (
-                  <div className="project-expanded-content" id={detailsId}>
-                    <p>{project.description}</p>
-                    <div className="project-learning"><strong>What this project explores</strong><span>{project.name === 'PM-SETU' ? 'Institutional workflows, backend architecture, relational data modelling and API integration.' : project.name === 'ArcEngine' ? 'Rendering architecture, engine subsystems, physics integration, scripting and editor foundations.' : project.name === 'MiraV2' ? 'Local speech interfaces, modular C++ components, intent processing and privacy-conscious design.' : project.name === 'ArcTester' ? 'Offline-first exam delivery, question management, assessment logic and performance analytics.' : project.name === 'Freight Broker CRM & Carrier Vetting' ? 'Carrier onboarding, vetting workflows, operational data and cross-platform product development.' : 'Personnel data management, multi-stage allocation workflows, training, reporting and auditability.'}</span></div>
-                    <div className="tag-list">{project.stack.map(item => <span key={item}>{item}</span>)}</div>
-                    <div className="project-card-actions">
-                      <button className="case-study-trigger" type="button" onClick={() => setSelectedProject(project)}>Open full case study <ArrowUpRight size={14}/></button>
-                      <div className="project-links">{project.links.map(link => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} <ArrowUpRight size={14}/></a>)}</div>
-                    </div>
-                  </div>
-                )}
-              </article>
-            )
-          })}
+                <div className="project-links">{project.links.map(link => <a key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label} <ArrowUpRight size={14}/></a>)}</div>
+              </div>
+            </article>
+          ))}
           {visibleProjects.length === 0 && (
             <div className="project-empty">
               <strong>No matching projects</strong>

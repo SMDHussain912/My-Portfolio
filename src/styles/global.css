@@ -1108,9 +1108,10 @@ a {
 }
 
 
-/* Phase 2 — compact project cards with accessible inline expansion */
+
+/* Phase 2 — compact project cards that open the full case study directly */
 .projects-section .project-grid {
-  align-items: start;
+  align-items: stretch;
 }
 
 .projects-section .project-card {
@@ -1124,7 +1125,7 @@ a {
   align-items: center;
   gap: 14px;
   min-width: 0;
-  margin: 22px 0 18px;
+  margin: 22px 0 13px;
 }
 
 .project-card-heading .project-symbol {
@@ -1148,70 +1149,54 @@ a {
   line-height: 1.5;
 }
 
-.project-expand-trigger {
+.project-card-summary {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+.project-card-footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 12px;
-  width: 100%;
   margin-top: auto;
-  padding: 12px 0 0;
+  padding-top: 13px;
+  border-top: 1px solid rgba(160,184,218,.12);
+}
+
+.project-card-footer .case-study-trigger {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 0;
   color: var(--accent);
   border: 0;
-  border-top: 1px solid rgba(160,184,218,.12);
   background: transparent;
   cursor: pointer;
-  text-align: left;
   font: 600 12px 'Space Grotesk';
+  text-align: left;
 }
 
-.project-expand-trigger svg {
-  flex: 0 0 auto;
-  transition: transform .2s ease;
-}
-
-.project-expand-trigger:hover {
+.project-card-footer .case-study-trigger:hover {
+  gap: 12px;
   color: #e5faff;
 }
 
-.project-expand-trigger:focus-visible {
+.project-card-footer .case-study-trigger:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
   border-radius: 3px;
 }
 
-.project-expanded-content {
-  padding-top: 16px;
-  animation: project-details-in .22s ease both;
-}
-
-.project-expanded-content > p {
+.project-card-footer .project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
   margin: 0;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.8;
-}
-
-.project-expanded-content .project-learning {
-  margin-top: 16px;
-}
-
-.project-expanded-content .tag-list {
-  margin-top: 16px;
-}
-
-.project-expanded-content .project-card-actions {
-  margin-top: 17px;
-}
-
-.project-card.is-expanded {
-  border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
-  box-shadow: 0 12px 34px rgba(0,0,0,.18);
-}
-
-@keyframes project-details-in {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+  padding: 0;
+  border: 0;
 }
 
 @media(max-width:850px) {
@@ -1231,24 +1216,16 @@ a {
   }
 
   .project-card-heading {
-    margin: 17px 0 15px;
+    margin: 17px 0 12px;
   }
 
   .project-card-heading h3 {
     font-size: 19px;
   }
-
-  .project-expanded-content .tag-list {
-    gap: 7px;
-  }
 }
 
 @media(prefers-reduced-motion:reduce) {
-  .project-expanded-content {
-    animation: none;
-  }
-
-  .project-expand-trigger svg {
+  .project-card-footer .case-study-trigger {
     transition: none;
   }
 }
