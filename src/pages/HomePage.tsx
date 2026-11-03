@@ -18,12 +18,11 @@ const journey = [
 const projects = [
   {
     number: '01', name: 'PM-SETU', category: 'Government / Institutional Platform',
-    description: 'Contributed backend development during NIC industrial training for an institutional platform supporting ITI upgradation workflows. Work included API development, validation, application logic and relational database integration.',
-    stack: ['TypeScript', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Docker'],
-    status: 'Project contribution completed',
+    description: 'Contributed during NIC industrial training to an institutional platform supporting ITI upgradation workflows. The public frontend repository is a React + Vite project; its README is still the starter template, so detailed implementation claims and backend technologies are not independently verifiable from the public repositories.',
+    stack: ['React', 'JavaScript', 'Vite'],
+    status: 'NIC contribution · public implementation needs documentation',
     links: [
-      { label: 'Frontend', href: 'https://github.com/SMDHussain912/PM-SETU-Frontend' },
-      { label: 'Backend', href: 'https://github.com/SMDHussain912/PM-SETU-Backend' },
+      { label: 'Frontend repository', href: 'https://github.com/SMDHussain912/PM-SETU-Frontend' },
     ],
   },
   {
@@ -35,9 +34,9 @@ const projects = [
   },
   {
     number: '03', name: 'MiraV2', category: 'Local AI / Linux Assistant',
-    description: 'A modular, local-first Linux voice assistant. It explores on-device speech transcription, intent understanding and privacy-conscious automation through a C++-centred architecture.',
-    stack: ['C++', 'Python', 'PyTorch', 'ONNX', 'whisper.cpp', 'PipeWire'],
-    status: 'In development',
+    description: 'An early-stage, local-first Linux desktop assistant written in C++. Speech recognition with whisper.cpp, PipeWire audio capture and an activation hotkey are implemented; intent routing, application launching, input automation, screen understanding and TTS remain planned or incomplete.',
+    stack: ['C++', 'whisper.cpp', 'PipeWire'],
+    status: 'Early development · core audio and speech components implemented',
     links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/MiraV2' }],
   },
   {
@@ -60,22 +59,35 @@ const projects = [
   },
   {
     number: '06', name: 'Polling Officer Allocation System', category: 'Government Workflow / Allocation Software',
-    description: 'An implemented personnel-allocation system for polling operations, covering personnel data, imports, multi-stage randomization, training workflows, reporting and audit capabilities.',
-    stack: ['React', 'Node.js', 'Express', 'PostgreSQL', 'JWT', 'Excel / CSV'],
-    status: 'Implemented',
+    description: 'A polling-personnel allocation project with documented requirements and architecture for personnel imports, three-stage randomization, training, reporting and audit. The linked public backend README explicitly describes a documentation-and-placeholder structure with no source implementation yet.',
+    stack: [],
+    status: 'Architecture and documentation · public backend implementation pending',
     links: [{ label: 'Public backend repository', href: 'https://github.com/SMDHussain912/Polling-Officer-Allocation-Software-Backend' }],
   },
 ]
 
 const otherProjects = [
-  { name: 'UniSphere', category: 'Learning & Career Platform', description: 'A platform combining programming learning, exam practice, progress tracking, job and internship discovery, and student-focused tools.', href: 'https://github.com/SMDHussain912/UniSphere' },
-  { name: 'UniChat', category: 'Communication Application', description: 'A full-stack chat application project exploring real-time communication and application architecture.', href: 'https://github.com/SMDHussain912/UniChat' },
-  { name: 'RobotSimulator', category: 'C++ / Robotics Simulation', description: 'A C++ project exploring robot movement and simulation through a custom engine and simulator structure.', href: 'https://github.com/SMDHussain912/RobotSimulator' },
-  { name: 'Career Navigator', category: 'AI-Powered Learning Platform', description: 'A web platform for career recommendations, learning roadmaps, assessments, coding practice and learning progress.', href: 'https://github.com/SMDHussain912/Web-server' },
-  { name: 'UniTech-Site', category: 'Organization Website', description: 'A responsive website for an independent technology and software-development studio.', href: 'https://github.com/SMDHussain912/UniTech-Site' },
-  { name: 'THE-SYSTEM', category: 'Java Application', description: 'A Solo Leveling-inspired progression and level-system project built around gamified personal development.', href: 'https://github.com/SMDHussain912/THE-SYSTEM' },
-  { name: 'EGCOR', category: 'Institutional Project', description: 'A recruitment-oriented project associated with the East Godavari Collector Office training work.', href: 'https://github.com/SMDHussain912/EGCOR' },
-  { name: 'Arc-Dev-Lab', category: 'Programming Laboratory', description: 'A collection of programming experiments, exercises and explorations across languages and development areas.', href: 'https://github.com/SMDHussain912/Arc-Dev-Lab' },
+  { name: 'UniSphere', category: 'Student & Examination Platform', description: 'A full-stack student platform covering exam enrollment, hall tickets, online tests, answer evaluation, results, jobs, applications and role-based administration.', href: 'https://github.com/SMDHussain912/UniSphere', stack: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'WebSocket'], status: 'Active development' },
+  { name: 'UniChat', category: 'Communication Application', description: 'A communication application repository. Its current source stack and feature completeness still need repository-level verification.', href: 'https://github.com/SMDHussain912/UniChat', stack: [], status: 'Repository details need verification' },
+  { name: 'RobotSimulator', category: 'C++ / Robotics Simulation', description: 'A C++17 robot simulator built with a custom project structure, including engine utilities, grid and node logic, robot behavior, A* pathfinding and text-to-speech components.', href: 'https://github.com/SMDHussain912/RobotSimulator', stack: ['C++17', 'CMake'], status: 'Independent project' },
+  { name: 'Career Navigator', category: 'AI-Powered Learning Platform', description: 'A Node.js and Express career recommendation and learning platform using EJS templates, MongoDB/Mongoose and authentication-related backend components.', href: 'https://github.com/SMDHussain912/Web-server', stack: ['JavaScript', 'Node.js', 'Express', 'EJS', 'MongoDB', 'Mongoose'], status: 'Independent project' },
+  { name: 'UniTech-Site', category: 'Organization Website', description: 'A responsive one-page website for UniTech Organization, built with standard browser technologies and custom interactions without a build process or external dependencies.', href: 'https://github.com/SMDHussain912/UniTech-Site', stack: ['HTML', 'CSS', 'JavaScript'], status: 'Website project' },
+  { name: 'THE-SYSTEM', category: 'Java Application', description: 'A Solo Leveling-inspired progression and level-system project. Its current implementation stack needs source-level verification before technologies are listed.', href: 'https://github.com/SMDHussain912/THE-SYSTEM', stack: [], status: 'Repository details need verification' },
+  { name: 'EGCOR', category: 'Institutional Recruitment Website', description: 'An East Godavari Collector Office recruitment website project using an Express server, EJS templates and Mongoose-backed data models.', href: 'https://github.com/SMDHussain912/EGCOR', stack: ['JavaScript', 'Node.js', 'Express', 'EJS', 'MongoDB', 'Mongoose'], status: 'Institutional project' },
+  { name: 'Arc-Dev-Lab', category: 'Programming Laboratory', description: 'A learning repository for programming experiments, prototypes and small projects across multiple development areas. Individual languages should be attributed to specific experiments, not to the whole repository.', href: 'https://github.com/SMDHussain912/Arc-Dev-Lab', stack: [], status: 'Ongoing learning repository' },
+]
+
+const allProjects = [
+  ...projects,
+  ...otherProjects.map((project, index) => ({
+    number: String(index + 7).padStart(2, '0'),
+    name: project.name,
+    category: project.category,
+    description: project.description,
+    stack: project.stack,
+    status: project.status,
+    links: [{ label: 'Repository', href: project.href }],
+  })),
 ]
 
 const skillGroups = [
@@ -109,13 +121,13 @@ export default function HomePage() {
   const [terminalInput, setTerminalInput] = useState('')
   const [terminalOutput, setTerminalOutput] = useState<string[]>(['Welcome to arc://portfolio', 'Type help to see available commands.'])
   const [paletteOpen, setPaletteOpen] = useState(false)
-  const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null)
+  const [selectedProject, setSelectedProject] = useState<(typeof allProjects)[number] | null>(null)
   const [paletteQuery, setPaletteQuery] = useState('')
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [selectedTechnology, setSelectedTechnology] = useState('TypeScript')
   const projectFilters = ['All', 'Personal', 'Professional', 'Institutional']
-  const technologyExplorer = ['TypeScript', 'Python', 'C++', 'React', 'Node.js', 'PostgreSQL', 'PyTorch', 'Unity', 'MongoDB', 'Next.js']
-  const technologyProjects = projects.filter((project) => project.stack.some((technology) => technology.toLowerCase() === selectedTechnology.toLowerCase()))
+  const technologyExplorer = Array.from(new Set(allProjects.flatMap((project) => project.stack))).sort((a, b) => a.localeCompare(b))
+  const technologyProjects = allProjects.filter((project) => project.stack.some((technology) => technology.toLowerCase() === selectedTechnology.toLowerCase()))
   const visibleProjects = useMemo(() => projects.filter((project) => {
     const kind = project.name === 'Freight Broker CRM & Carrier Vetting'
       ? 'Professional'
@@ -658,16 +670,16 @@ export default function HomePage() {
         <div className="section-heading compact-heading">
           <span className="section-index">09 / INTERACTIVE TECHNOLOGY MAP</span>
           <h2>Find the tech behind <span>the work.</span></h2>
-          <p>Choose a technology to discover the projects where it appears. This map is generated from the project stacks listed above.</p>
+          <p>Choose a verified technology to discover every showcased project whose repository documents or manifests support it. Projects without enough source evidence are intentionally not counted.</p>
         </div>
         <div className="tech-lab">
           <div className="tech-orbit" aria-hidden="true"><span/><span/><span/></div>
           <div className="tech-picker" role="group" aria-label="Filter projects by technology">
-            {technologyExplorer.map((technology) => <button type="button" key={technology} className={selectedTechnology === technology ? 'tech-chip is-active' : 'tech-chip'} aria-pressed={selectedTechnology === technology} onClick={() => setSelectedTechnology(technology)}>{technology}<span>{projects.filter((project) => project.stack.some((item) => item.toLowerCase() === technology.toLowerCase())).length}</span></button>)}
+            {technologyExplorer.map((technology) => <button type="button" key={technology} className={selectedTechnology === technology ? 'tech-chip is-active' : 'tech-chip'} aria-pressed={selectedTechnology === technology} onClick={() => setSelectedTechnology(technology)}>{technology}<span>{allProjects.filter((project) => project.stack.some((item) => item.toLowerCase() === technology.toLowerCase())).length}</span></button>)}
           </div>
           <div className="tech-results" aria-live="polite">
             <div className="tech-results-heading"><span>SELECTED TECHNOLOGY</span><strong>{selectedTechnology}</strong><small>{technologyProjects.length} matching {technologyProjects.length === 1 ? 'project' : 'projects'}</small></div>
-            {technologyProjects.length > 0 ? technologyProjects.map((project) => <button className="tech-project" type="button" key={project.name} onClick={() => setSelectedProject(project)}><span><small>{project.category}</small><strong>{project.name}</strong></span><ArrowUpRight size={17}/></button>) : <p>No featured project currently lists this technology.</p>}
+            {technologyProjects.length > 0 ? technologyProjects.map((project) => <button className="tech-project" type="button" key={project.name} onClick={() => setSelectedProject(project)}><span><small>{project.category}</small><strong>{project.name}</strong></span><ArrowUpRight size={17}/></button>) : <p>No verified showcased project currently lists this technology.</p>}
           </div>
         </div>
       </section>
