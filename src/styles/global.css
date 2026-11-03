@@ -1106,3 +1106,149 @@ a {
     scroll-behavior: auto;
   }
 }
+
+
+/* Phase 2 — compact project cards with accessible inline expansion */
+.projects-section .project-grid {
+  align-items: start;
+}
+
+.projects-section .project-card {
+  min-height: 0;
+  padding: 19px;
+  gap: 0;
+}
+
+.project-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  margin: 22px 0 18px;
+}
+
+.project-card-heading .project-symbol {
+  flex: 0 0 42px;
+  margin: 0;
+}
+
+.project-card-heading > div:last-child {
+  min-width: 0;
+}
+
+.project-card-heading h3 {
+  margin: 5px 0 0;
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.project-card-heading .project-category {
+  display: block;
+  line-height: 1.5;
+}
+
+.project-expand-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+  padding: 12px 0 0;
+  color: var(--accent);
+  border: 0;
+  border-top: 1px solid rgba(160,184,218,.12);
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: 600 12px 'Space Grotesk';
+}
+
+.project-expand-trigger svg {
+  flex: 0 0 auto;
+  transition: transform .2s ease;
+}
+
+.project-expand-trigger:hover {
+  color: #e5faff;
+}
+
+.project-expand-trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.project-expanded-content {
+  padding-top: 16px;
+  animation: project-details-in .22s ease both;
+}
+
+.project-expanded-content > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.project-expanded-content .project-learning {
+  margin-top: 16px;
+}
+
+.project-expanded-content .tag-list {
+  margin-top: 16px;
+}
+
+.project-expanded-content .project-card-actions {
+  margin-top: 17px;
+}
+
+.project-card.is-expanded {
+  border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
+  box-shadow: 0 12px 34px rgba(0,0,0,.18);
+}
+
+@keyframes project-details-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width:850px) {
+  .projects-section .project-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+}
+
+@media(max-width:600px) {
+  .projects-section .project-grid {
+    grid-template-columns: minmax(0,1fr);
+    gap: 12px;
+  }
+
+  .projects-section .project-card {
+    padding: 17px;
+  }
+
+  .project-card-heading {
+    margin: 17px 0 15px;
+  }
+
+  .project-card-heading h3 {
+    font-size: 19px;
+  }
+
+  .project-expanded-content .tag-list {
+    gap: 7px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .project-expanded-content {
+    animation: none;
+  }
+
+  .project-expand-trigger svg {
+    transition: none;
+  }
+}
