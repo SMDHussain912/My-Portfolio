@@ -265,6 +265,7 @@ export default function HomePage() {
   const paletteItems = [
     { label: 'Home', detail: 'Back to the introduction', href: '#home' },
     { label: 'About', detail: 'Background and education', href: '#about' },
+    { label: 'Portraits', detail: 'A little more about the person', href: '#portraits' },
     { label: 'Journey', detail: 'Milestones and progression', href: '#journey' },
     { label: 'Experience', detail: 'Industrial training', href: '#experience' },
     { label: 'Projects', detail: 'Selected engineering work', href: '#projects' },
@@ -445,24 +446,6 @@ export default function HomePage() {
         <aside className="hero-aside" aria-label="Areas of engineering interest">
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
-          <div className="portrait-pair" aria-label="Portrait photos">
-            <figure className="portrait-card portrait-standing">
-              <img
-                src="/images/arc-standing.webp"
-                alt="Arc standing with arms crossed"
-                onError={(event) => { event.currentTarget.style.visibility = 'hidden' }}
-              />
-              <figcaption><span>01</span> STANDING</figcaption>
-            </figure>
-            <figure className="portrait-card portrait-seated">
-              <img
-                src="/images/arc-seated.webp"
-                alt="Arc seated in a chair"
-                onError={(event) => { event.currentTarget.style.visibility = 'hidden' }}
-              />
-              <figcaption><span>02</span> SEATED</figcaption>
-            </figure>
-          </div>
           <div className="aside-card">
             <div className="aside-card-heading"><Sparkles size={15} /> AREAS I EXPLORE</div>
             <ul className="focus-list">{focusAreas.map((area, index) => (
@@ -491,6 +474,30 @@ export default function HomePage() {
         <span className="section-index">01 / ABOUT</span>
         <p>One discipline is a starting point.<br /><strong>Building across disciplines is the journey.</strong></p>
         <span className="intro-note">WEB · AI · GAMES · SYSTEMS</span>
+      </section>
+      
+      <section className="portrait-section section-shell" id="portraits" aria-labelledby="portrait-title">
+        <div className="section-heading compact-heading">
+          <span className="section-index">02 / THE PERSON BEHIND THE CODE</span>
+          <h2 id="portrait-title">A little less screen.<br/><span>A little more human.</span></h2>
+          <p>Two sides, one builder — usually somewhere between planning an idea and bringing it to life.</p>
+        </div>
+        <div className="portrait-gallery">
+          <figure className="portrait-card portrait-standing">
+            <div className="portrait-image-stage">
+              <img src="/images/arc-standing.webp" alt="Arc standing with arms crossed" />
+              <span className="portrait-index">01</span>
+            </div>
+            <figcaption><span>01 / STANDING</span><strong>Ready to build.</strong></figcaption>
+          </figure>
+          <figure className="portrait-card portrait-seated">
+            <div className="portrait-image-stage">
+              <img src="/images/arc-seated.webp" alt="Arc seated in a chair" />
+              <span className="portrait-index">02</span>
+            </div>
+            <figcaption><span>02 / SEATED</span><strong>Taking a moment to think.</strong></figcaption>
+          </figure>
+        </div>
       </section>
 
       <section className="about-section section-shell">
