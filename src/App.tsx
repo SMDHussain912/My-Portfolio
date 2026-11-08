@@ -20,7 +20,7 @@ export default function App() {
     { label: 'About', href: '/#about' },
     { label: 'Experience', href: '/#experience' },
     { label: 'Projects', href: '/#projects' },
-    { label: 'Explore', href: '/#tech-lab' },
+    { label: 'Learning', href: '/#learning' },
     { label: 'Contact', href: '/#contact' },
   ]
 

@@ -1,51 +1,159 @@
-/* Personal portrait treatment for the home hero. */
+/* Two transparent personal portraits in the home hero.
+   Upload arc-standing.webp and arc-seated.webp to public/images/. */
 #home .hero-aside {
-  min-height: 500px;
+  height: 590px;
+  min-height: 590px;
+  align-items: start;
 }
 
-#home .hero-monogram {
-  width: min(300px, 72%);
-  height: 405px;
-  border: 1px solid rgba(98, 230, 242, .62);
-  border-radius: 46% 46% 18px 18px;
+#home .portrait-pair {
+  position: absolute;
+  z-index: 1;
+  top: 24px;
+  left: 2%;
+  width: 96%;
+  height: 390px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 8px;
+  pointer-events: none;
+}
+
+#home .portrait-card {
+  position: relative;
+  height: 100%;
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  align-items: end;
+  justify-content: center;
   overflow: hidden;
+  border: 1px solid rgba(98, 230, 242, .22);
+  border-radius: 48% 48% 14px 14px;
   background:
-    linear-gradient(180deg, rgba(8, 13, 22, .02) 55%, rgba(8, 13, 22, .35)),
-    url('/images/arc-portrait.webp') center 24% / cover no-repeat;
-  box-shadow: 0 0 75px rgba(40, 159, 192, .16), 0 24px 70px rgba(0, 0, 0, .3);
-  isolation: isolate;
+    radial-gradient(ellipse at 50% 58%, rgba(49, 125, 155, .2), rgba(8, 13, 22, .04) 68%);
+  box-shadow: inset 0 0 35px rgba(98, 230, 242, .035), 0 18px 48px rgba(0, 0, 0, .16);
 }
 
-#home .hero-monogram::before,
-#home .hero-monogram::after {
-  display: none;
+#home .portrait-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  padding: 10px 5px 28px;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, .28));
 }
 
-#home .hero-monogram span,
-#home .hero-monogram i {
-  display: none;
+#home .portrait-seated img {
+  padding-inline: 0;
+}
+
+#home .portrait-card figcaption {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 8px 5px;
+  text-align: center;
+  color: #9eb3c8;
+  background: linear-gradient(180deg, transparent, rgba(8, 13, 22, .92));
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: .12em;
+}
+
+#home .portrait-card figcaption span {
+  color: #67e8f9;
+  margin-right: 5px;
+}
+
+#home .aside-card {
+  z-index: 2;
+  bottom: 2px;
+}
+
+#home .hero-aside > .orbit {
+  top: 12px;
+}
+
+#home .hero-aside > .coordinate {
+  z-index: 2;
+}
+
+@media (max-width: 1050px) {
+  #home .hero-aside {
+    height: 560px;
+    min-height: 560px;
+  }
+
+  #home .portrait-pair {
+    height: 350px;
+  }
 }
 
 @media (max-width: 850px) {
   #home .hero-aside {
-    min-height: 455px;
+    height: 590px;
+    min-height: 590px;
   }
 
-  #home .hero-monogram {
-    width: min(280px, 68%);
-    height: 370px;
+  #home .portrait-pair {
+    top: 12px;
+    left: 8%;
+    width: 84%;
+    height: 380px;
+    gap: 12px;
+  }
+
+  #home .aside-card {
+    right: 50%;
+    transform: translateX(50%);
+    width: min(320px, 90%);
+    bottom: 0;
   }
 }
 
 @media (max-width: 600px) {
   #home .hero-aside {
-    min-height: 405px;
+    height: 520px;
+    min-height: 520px;
   }
 
-  #home .hero-monogram {
-    width: 224px;
-    height: 330px;
-    border-radius: 46% 46% 16px 16px;
-    background-position: center 22%;
+  #home .portrait-pair {
+    top: 8px;
+    left: 1%;
+    width: 98%;
+    height: 325px;
+    gap: 8px;
+  }
+
+  #home .portrait-card {
+    border-radius: 44% 44% 12px 12px;
+  }
+
+  #home .portrait-card img {
+    padding: 8px 2px 25px;
+  }
+
+  #home .portrait-card figcaption {
+    font-size: 8px;
+    letter-spacing: .08em;
+  }
+
+  #home .aside-card {
+    width: min(310px, 94%);
+  }
+
+  #home .coordinate-top {
+    top: 2px;
+    right: 4px;
+    font-size: 7px;
+  }
+
+  #home .coordinate-bottom {
+    display: none;
   }
 }
