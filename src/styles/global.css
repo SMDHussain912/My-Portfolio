@@ -1004,12 +1004,6 @@ a {
   .journey-content {
     min-width: 0;
   }
-  .tech-lab {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .tech-results {
-    min-width: 0;
-  }
   .terminal-form {
     min-width: 0;
   }
