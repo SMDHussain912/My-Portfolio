@@ -68,10 +68,16 @@ const projects = [
       { label: 'Backend', href: 'https://github.com/SMDHussain912/Polling-Officer-Allocation-Backend' },
     ],
   },
+  {
+    number: '07', name: 'UniSphere', category: 'Student & Examination Platform',
+    description: 'A full-stack student platform covering exam enrollment, hall tickets, online tests, answer evaluation, results, jobs, applications and role-based administration.',
+    stack: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'Mongoose'],
+    status: 'Active development',
+    links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/UniSphere' }],
+  },
 ]
 
 const otherProjects = [
-  { name: 'UniSphere', category: 'Student & Examination Platform', description: 'A full-stack student platform covering exam enrollment, hall tickets, online tests, answer evaluation, results, jobs, applications and role-based administration.', href: 'https://github.com/SMDHussain912/UniSphere', stack: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'Mongoose'], status: 'Active development' },
   { name: 'UniChat', category: 'Communication Application', description: 'A communication application repository. Its current source stack and feature completeness still need repository-level verification.', href: 'https://github.com/SMDHussain912/UniChat', stack: [], status: 'Repository details need verification' },
   { name: 'RobotSimulator', category: 'C++ / Robotics Simulation', description: 'A C++17 robot simulator built with a custom project structure, including engine utilities, grid and node logic, robot behavior, A* pathfinding and text-to-speech components.', href: 'https://github.com/SMDHussain912/RobotSimulator', stack: ['C++', 'CMake'], status: 'Independent project' },
   { name: 'Career Navigator', category: 'AI-Powered Learning Platform', description: 'A Node.js and Express career recommendation and learning platform using EJS templates, MongoDB/Mongoose and authentication-related backend components.', href: 'https://github.com/SMDHussain912/Web-server', stack: ['JavaScript', 'Node.js', 'Express', 'EJS', 'MongoDB', 'Mongoose'], status: 'Independent project' },
@@ -129,10 +135,7 @@ export default function HomePage() {
   const [selectedProject, setSelectedProject] = useState<(typeof allProjects)[number] | null>(null)
   const [paletteQuery, setPaletteQuery] = useState('')
   const [showBackToTop, setShowBackToTop] = useState(false)
-  const [selectedTechnology, setSelectedTechnology] = useState('TypeScript')
   const projectFilters = ['All', 'Personal', 'Professional', 'Institutional']
-  const technologyExplorer = Array.from(new Set(['C', 'C++', 'C#', 'Java', 'JavaScript', 'TypeScript', 'Python', 'Kotlin', 'PHP', 'Lua', 'HTML', 'CSS', ...allProjects.flatMap((project) => project.stack)])).sort((a, b) => a.localeCompare(b))
-  const technologyProjects = allProjects.filter((project) => project.stack.some((technology) => technology.toLowerCase() === selectedTechnology.toLowerCase()))
   const visibleProjects = useMemo(() => projects.filter((project) => {
     const kind = project.name === 'Freight Broker CRM & Carrier Vetting'
       ? 'Professional'
@@ -231,7 +234,7 @@ export default function HomePage() {
     const responses: Record<string, string> = {
       help: 'Commands: help, whoami, about, projects, skills, stack, journey, experience, date, time, github, linkedin, email, copy, open <project>, clear',
       about: 'Arc is a multidisciplinary developer exploring web, AI, games and systems engineering.',
-      projects: 'Featured work: PM-SETU, ArcEngine, MiraV2, ArcTester, Freight Broker CRM and Polling Officer Allocation.',
+      projects: 'Featured work: PM-SETU, ArcEngine, MiraV2, ArcTester, Freight Broker CRM, Polling Officer Allocation and UniSphere.',
       skills: 'C/C++ · Python · TypeScript · React · Node.js · PostgreSQL · PyTorch · Unity · Linux',
       github: 'Opening GitHub profile…',
       contact: 'Email: shaikmahammadhussain9121@gmail.com',
@@ -275,7 +278,7 @@ export default function HomePage() {
     { label: 'Experience', detail: 'Industrial training', href: '#experience' },
     { label: 'Projects', detail: 'Selected engineering work', href: '#projects' },
     { label: 'GitHub activity', detail: 'Live public profile data', href: '#github-activity' },
-    { label: 'Technology explorer', detail: 'Find projects by technology', href: '#tech-lab' },
+    { label: 'Learning roadmap', detail: 'Current learning directions', href: '#learning' },
     { label: 'Skills', detail: 'Technical toolkit', href: '#skills' },
     { label: 'Terminal', detail: 'Explore with commands', href: '#terminal' },
     { label: 'Contact', detail: 'Start a conversation', href: '#contact' },
@@ -688,24 +691,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="tech-lab-section section-shell" id="tech-lab">
-        <div className="section-heading compact-heading">
-          <span className="section-index">09 / INTERACTIVE TECHNOLOGY MAP</span>
-          <h2>Find the tech behind <span>the work.</span></h2>
-          <p>Choose a verified technology to discover every showcased project whose repository documents or manifests support it. Projects without enough source evidence are intentionally not counted.</p>
-        </div>
-        <div className="tech-lab">
-          <div className="tech-orbit" aria-hidden="true"><span/><span/><span/></div>
-          <div className="tech-picker" role="group" aria-label="Filter projects by technology">
-            {technologyExplorer.map((technology) => <button type="button" key={technology} className={selectedTechnology === technology ? 'tech-chip is-active' : 'tech-chip'} aria-pressed={selectedTechnology === technology} onClick={() => setSelectedTechnology(technology)}>{technology}<span>{allProjects.filter((project) => project.stack.some((item) => item.toLowerCase() === technology.toLowerCase())).length}</span></button>)}
-          </div>
-          <div className="tech-results" aria-live="polite">
-            <div className="tech-results-heading"><span>SELECTED TECHNOLOGY</span><strong>{selectedTechnology}</strong><small>{technologyProjects.length} matching {technologyProjects.length === 1 ? 'project' : 'projects'}</small></div>
-            {technologyProjects.length > 0 ? technologyProjects.map((project) => <button className="tech-project" type="button" key={project.name} onClick={() => setSelectedProject(project)}><span><small>{project.category}</small><strong>{project.name}</strong></span><ArrowUpRight size={17}/></button>) : <p>No verified showcased project currently lists this technology.</p>}
-          </div>
-        </div>
-      </section>
-
       <section className="learning-section section-shell" id="learning">
         <div className="section-heading compact-heading">
           <span className="section-index">10 / CURRENT LEARNING ROADMAP</span>
@@ -738,7 +723,7 @@ export default function HomePage() {
       </section>
 
       <section className="contact-section section-shell" id="contact">
-        <span className="section-index">12 / GET IN TOUCH</span>
+        <span className="section-index">11 / GET IN TOUCH</span>
         <h2>Have an idea?<br/><span>Let's build something.</span></h2>
         <p>I'm interested in meaningful projects, learning opportunities and conversations about engineering.</p>
         <a className="button button-primary" href="mailto:shaikmahammadhussain9121@gmail.com">Say hello <Mail size={16}/></a>
