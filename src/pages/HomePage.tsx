@@ -451,7 +451,24 @@ export default function HomePage() {
         <aside className="hero-aside" aria-label="Areas of engineering interest">
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
-          <div className="hero-monogram"><span>SH</span><i /></div>
+          <div className="portrait-pair" aria-label="Portrait photos">
+            <figure className="portrait-card portrait-standing">
+              <img
+                src="/images/arc-standing.webp"
+                alt="Arc standing with arms crossed"
+                onError={(event) => { event.currentTarget.style.visibility = 'hidden' }}
+              />
+              <figcaption><span>01</span> STANDING</figcaption>
+            </figure>
+            <figure className="portrait-card portrait-seated">
+              <img
+                src="/images/arc-seated.webp"
+                alt="Arc seated in a chair"
+                onError={(event) => { event.currentTarget.style.visibility = 'hidden' }}
+              />
+              <figcaption><span>02</span> SEATED</figcaption>
+            </figure>
+          </div>
           <div className="aside-card">
             <div className="aside-card-heading"><Sparkles size={15} /> AREAS I EXPLORE</div>
             <ul className="focus-list">{focusAreas.map((area, index) => (
