@@ -250,7 +250,7 @@ export default function HomePage() {
     if (command === 'clear') setTerminalOutput([])
     else {
       const projectQuery = command.startsWith('open ') ? command.slice(5).trim() : ''
-      const projectMatch = projectQuery ? projects.find((project) => project.name.toLowerCase().includes(projectQuery)) : undefined
+      const projectMatch = projectQuery ? allProjects.find((project) => project.name.toLowerCase().includes(projectQuery)) : undefined
       const output = command.startsWith('open ')
         ? (projectMatch ? 'Opening ' + projectMatch.name + ' case study…' : 'No project matches that name. Try: open arcengine')
         : (responses[command] ?? ('Command not found: ' + command + '. Type help.'))
