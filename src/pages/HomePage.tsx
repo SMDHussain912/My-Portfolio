@@ -17,14 +17,11 @@ const journey = [
 
 const projects = [
   {
-    number: '01', name: 'PM-SETU', category: 'Government / Institutional Platform',
-    description: 'Contributed during NIC industrial training to an institutional platform supporting ITI upgradation workflows. The public repositories contain a React + Vite frontend and a TypeScript + Express backend using Prisma and PostgreSQL.',
-    stack: ['JavaScript', 'TypeScript', 'React', 'Vite', 'Node.js', 'Express', 'Prisma', 'PostgreSQL'],
-    status: 'NIC industrial training contribution',
-    links: [
-      { label: 'Frontend', href: 'https://github.com/SMDHussain912/PM-SETU-Frontend' },
-      { label: 'Backend', href: 'https://github.com/SMDHussain912/PM-SETU-Backend' },
-    ],
+    number: '01', name: 'MiraV2', category: 'Local AI / Linux Assistant',
+    description: 'An early-stage, local-first Linux desktop assistant written in C++. Speech recognition with whisper.cpp, PipeWire audio capture and an activation hotkey are implemented; intent routing, application launching, input automation, screen understanding and TTS remain planned or incomplete.',
+    stack: ['C++', 'whisper.cpp', 'PipeWire'],
+    status: 'Early development · core audio and speech components implemented',
+    links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/MiraV2' }],
   },
   {
     number: '02', name: 'ArcEngine', category: 'C++ Game Engine',
@@ -34,21 +31,31 @@ const projects = [
     links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/ArcEngine' }],
   },
   {
-    number: '03', name: 'MiraV2', category: 'Local AI / Linux Assistant',
-    description: 'An early-stage, local-first Linux desktop assistant written in C++. Speech recognition with whisper.cpp, PipeWire audio capture and an activation hotkey are implemented; intent routing, application launching, input automation, screen understanding and TTS remain planned or incomplete.',
-    stack: ['C++', 'whisper.cpp', 'PipeWire'],
-    status: 'Early development · core audio and speech components implemented',
-    links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/MiraV2' }],
+    number: '03', name: 'UniSphere', category: 'Student & Examination Platform',
+    description: 'A full-stack student platform covering exam enrollment, hall tickets, online tests, answer evaluation, results, jobs, applications and role-based administration.',
+    stack: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'Mongoose'],
+    status: 'Active development',
+    links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/UniSphere' }],
   },
   {
-    number: '04', name: 'ArcTester', category: 'Education / Examination Platform',
+    number: '04', name: 'PM-SETU', category: 'Government / Institutional Platform',
+    description: 'Contributed during NIC industrial training to an institutional platform supporting ITI upgradation workflows. The public repositories contain a React + Vite frontend and a TypeScript + Express backend using Prisma and PostgreSQL.',
+    stack: ['JavaScript', 'TypeScript', 'React', 'Vite', 'Node.js', 'Express', 'Prisma', 'PostgreSQL'],
+    status: 'NIC industrial training contribution',
+    links: [
+      { label: 'Frontend', href: 'https://github.com/SMDHussain912/PM-SETU-Frontend' },
+      { label: 'Backend', href: 'https://github.com/SMDHussain912/PM-SETU-Backend' },
+    ],
+  },
+  {
+    number: '05', name: 'ArcTester', category: 'Education / Examination Platform',
     description: 'An offline-first AP ECET CSE mock-test application with an exam engine, question management and performance analytics. Designed to run locally after installation.',
     stack: ['Next.js', 'React', 'TypeScript', 'Express', 'Prisma', 'SQLite', 'Vitest'],
     status: 'Actively developing',
     links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/ArcTester' }],
   },
   {
-    number: '05', name: 'Freight Broker CRM & Carrier Vetting', category: 'Professional Full-Stack Product',
+    number: '06', name: 'Freight Broker CRM & Carrier Vetting', category: 'Professional Full-Stack Product',
     description: 'Professional development work at Ricoz Innovation on a freight-brokerage CRM, covering carrier management and vetting workflows across web, backend and mobile applications.',
     stack: ['Next.js', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Expo'],
     status: 'Professional work · Ricoz Innovation',
@@ -57,23 +64,6 @@ const projects = [
       { label: 'Backend', href: 'https://github.com/SMDHussain912/FriegthBrokerCMR-Backend' },
       { label: 'Mobile', href: 'https://github.com/SMDHussain912/FriegthBrokerCMR-Mobile' },
     ],
-  },
-  {
-    number: '06', name: 'Polling Officer Allocation System', category: 'Government Workflow / Allocation Software',
-    description: 'A polling personnel allocation and administration platform with a React dashboard and Express backend. The repositories include officer and booth management, Excel uploads, allocation workflows, notifications, ID-card design and reporting modules.',
-    stack: ['JavaScript', 'React', 'Vite', 'Node.js', 'Express', 'MongoDB', 'Mongoose'],
-    status: 'Implemented project · frontend and backend repositories',
-    links: [
-      { label: 'Frontend', href: 'https://github.com/SMDHussain912/Polling-Officer-Allocation-Frontend' },
-      { label: 'Backend', href: 'https://github.com/SMDHussain912/Polling-Officer-Allocation-Backend' },
-    ],
-  },
-  {
-    number: '07', name: 'UniSphere', category: 'Student & Examination Platform',
-    description: 'A full-stack student platform covering exam enrollment, hall tickets, online tests, answer evaluation, results, jobs, applications and role-based administration.',
-    stack: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'Mongoose'],
-    status: 'Active development',
-    links: [{ label: 'Repository', href: 'https://github.com/SMDHussain912/UniSphere' }],
   },
 ]
 
@@ -86,6 +76,7 @@ const otherProjects = [
   { name: 'EGCOR', category: 'Institutional Recruitment Website', description: 'An East Godavari Collector Office recruitment website project using an Express server, EJS templates and Mongoose-backed data models.', href: 'https://github.com/SMDHussain912/EGCOR', stack: ['JavaScript', 'Node.js', 'Express', 'EJS', 'MongoDB', 'Mongoose'], status: 'Institutional project' },
   { name: 'E-OFFICE', category: 'Office Workflow Web Application', description: 'An E-OFFICE web application repository with an Express server, EJS views and dependencies for authentication, request validation, file handling and application security.', href: 'https://github.com/SMDHussain912/E-OFFICE', stack: ['JavaScript', 'Node.js', 'Express', 'EJS'], status: 'Repository implementation' },
   { name: 'Arc-Dev-Lab', category: 'Programming Laboratory', description: 'A learning repository for programming experiments, prototypes and small projects across multiple development areas. Individual languages should be attributed to specific experiments, not to the whole repository.', href: 'https://github.com/SMDHussain912/Arc-Dev-Lab', stack: [], status: 'Ongoing learning repository' },
+  { name: 'Polling Officer Allocation System', category: 'Government Workflow / Allocation Software', description: 'A polling personnel allocation and administration platform with a React dashboard and Express backend. Includes officer and booth management, Excel uploads, allocation workflows, notifications, ID-card design and reporting. Frontend and backend repositories are available.', href: 'https://github.com/SMDHussain912/Polling-Officer-Allocation-Frontend', stack: ['JavaScript', 'React', 'Vite', 'Node.js', 'Express', 'MongoDB', 'Mongoose'], status: 'Implemented project · frontend and backend repositories' },
 ]
 
 const allProjects = [
@@ -139,7 +130,7 @@ export default function HomePage() {
   const visibleProjects = useMemo(() => projects.filter((project) => {
     const kind = project.name === 'Freight Broker CRM & Carrier Vetting'
       ? 'Professional'
-      : ['PM-SETU', 'Polling Officer Allocation System'].includes(project.name)
+      : ['PM-SETU'].includes(project.name)
         ? 'Institutional'
         : 'Personal'
     const matchesFilter = projectFilter === 'All' || kind === projectFilter
@@ -234,7 +225,7 @@ export default function HomePage() {
     const responses: Record<string, string> = {
       help: 'Commands: help, whoami, about, projects, skills, stack, journey, experience, date, time, github, linkedin, email, copy, open <project>, clear',
       about: 'Arc is a multidisciplinary developer exploring web, AI, games and systems engineering.',
-      projects: 'Featured work: PM-SETU, ArcEngine, MiraV2, ArcTester, Freight Broker CRM, Polling Officer Allocation and UniSphere.',
+      projects: 'Featured work: MiraV2, ArcEngine, UniSphere, PM-SETU, ArcTester and Freight Broker CRM.',
       skills: 'C/C++ · Python · TypeScript · React · Node.js · PostgreSQL · PyTorch · Unity · Linux',
       github: 'Opening GitHub profile…',
       contact: 'Email: shaikmahammadhussain9121@gmail.com',
@@ -250,7 +241,7 @@ export default function HomePage() {
     if (command === 'clear') setTerminalOutput([])
     else {
       const projectQuery = command.startsWith('open ') ? command.slice(5).trim() : ''
-      const projectMatch = projectQuery ? projects.find((project) => project.name.toLowerCase().includes(projectQuery)) : undefined
+      const projectMatch = projectQuery ? allProjects.find((project) => project.name.toLowerCase().includes(projectQuery)) : undefined
       const output = command.startsWith('open ')
         ? (projectMatch ? 'Opening ' + projectMatch.name + ' case study…' : 'No project matches that name. Try: open arcengine')
         : (responses[command] ?? ('Command not found: ' + command + '. Type help.'))
